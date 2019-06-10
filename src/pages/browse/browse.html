@@ -1,0 +1,22 @@
+<h1>Browse</h1>
+
+
+<!-- <ion-list class='no-margin' mode="ios">
+  <ion-item mode="ios">
+    <ion-label class="label-left" mode="ios">Select a Category</ion-label>
+    <ion-select mode="ios" [(ngModel)]="selectedCategory" (ngModelChange)="selectCategory(selectedCategory)"
+      [interfaceOptions]="categorySelectOptions">
+      <ion-select-option *ngFor='let category of displayCategories$ | async'>{{category}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+  <ion-item mode="ios">
+    <ion-label class="label-left" mode="ios">Select a Letter</ion-label>
+    <ion-select mode="ios" [(ngModel)]="selectedLetter" (ngModelChange)="scrollTo($event)"
+      [interfaceOptions]="letterSelectOptions">
+      <ion-select-option *ngFor='let letter of displayLetters$ | async'>{{letter}}</ion-select-option>
+    </ion-select>
+  </ion-item>
+</ion-list> -->
+<div class="entry-container" *ngIf="currentTen$ | async as currentTen">
+  <entry-list [entries]='currentTen'></entry-list>
+</div>

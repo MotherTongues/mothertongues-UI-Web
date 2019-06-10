@@ -1,0 +1,8 @@
+<h1>Random</h1>
+
+<div class='center'>
+  <button color="tertiary" (click)='getRandom()'>Click here for 10 Random words</button>
+</div>
+<div class="entry-container" *ngIf="entries$ | async as entries_val">
+  <entry-list [entries]="entries_val"></entry-list>
+</div>

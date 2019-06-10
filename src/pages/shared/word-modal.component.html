@@ -1,0 +1,90 @@
+<h1>Word Info</h1>
+
+<!-- <ion-content>
+  <ion-card>
+    <div *ngIf="displayImages">
+      <img [(src)]="entry.img" onError="this.src='/static/assets/img/default.png'" *ngIf="entry.img" />
+    </div>
+    <ion-card-content>
+      <ion-card-title>
+        {{entry.word}}
+      </ion-card-title>
+      <p class="definition">
+        {{entry.definition}}
+      </p>
+      <div *ngIf="entry.optional && optional">
+        <div class="option" *ngFor="let optional_dict of entry.optional; let i = index">
+          <p *ngFor="let option of objectKeys(optional_dict)">
+            <span *ngIf="checkChecked(option)">{{ option }} - {{ entry.optional[i][option]}} </span>
+          </p>
+        </div>
+      </div>
+    </ion-card-content>
+
+    <ion-row *ngIf="(entry.audio | noNullObjectValues)?.length > 0">
+      <ion-card>
+        <ion-card-header>
+          Audio
+        </ion-card-header>
+
+        <ion-list>
+          <ion-item button *ngIf="audio_playing?.length > 0" (click)="stopAllAudio()">
+            <ion-label>Stop all audio</ion-label>
+            <ion-icon name="hand" item-start src='/static/assets/svg/md-hand.svg'></ion-icon>
+          </ion-item>
+          <ion-item button *ngFor="let track of (entry.audio | noNullObjectValues)" (click)="playAudio(track)">
+            <ion-label>
+              <ion-icon name="musical-notes" item-start src='/static/assets/svg/md-musical-notes.svg'></ion-icon>
+              <span *ngIf="track.speaker">Speaker: {{ track.speaker }}</span>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+
+    </ion-row>
+
+    <ion-row *ngIf="(entry.example_sentence | noNullValues)?.length > 0">
+      <ion-card>
+        <ion-card-header>
+          Sentences
+        </ion-card-header>
+
+        <ion-list *ngFor="let sentence of (entry.example_sentence | noNullValues); let i = index">
+
+          <ion-item button *ngFor="let track of (entry.example_sentence_audio[i] | noNullObjectValues)"
+            (click)="playAudio(track)">
+            <ion-label>
+              <ion-icon name="musical-notes" item-start src='/static/assets/svg/md-musical-notes.svg'></ion-icon>
+              <h2>{{ sentence }}</h2>
+              <h4>{{ entry.example_sentence_definition[i] }}</h4>
+              <h6 *ngIf="track.speaker">Speaker: {{ track.speaker }}</h6>
+            </ion-label>
+          </ion-item>
+
+        </ion-list>
+      </ion-card>
+
+    </ion-row>
+
+    <ion-row no-padding>
+      <ion-col>
+        <ion-buttons>
+          <ion-button (click)="toggleFav(entry)">
+            <ion-icon *ngIf="!favourited(entry)" slot="icon-only" name="bookmarks" src='/static/assets/svg/md-bookmarks.svg'></ion-icon>
+            <ion-icon *ngIf="favourited(entry)" [style.color]="'#EF3B51'" slot="icon-only" name="bookmarks" src='/static/assets/svg/md-bookmarks.svg'></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
+</ion-content>
+
+<ion-footer *ngIf="entry.optional">
+  <ion-toolbar>
+    <ion-item>
+      <ion-toggle checked="false" [(ngModel)]="optional"></ion-toggle>
+      <ion-label (click)="showOptions()">Show optional information</ion-label>
+    </ion-item>
+  </ion-toolbar>
+</ion-footer> -->
