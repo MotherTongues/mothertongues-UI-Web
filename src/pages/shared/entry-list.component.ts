@@ -16,9 +16,13 @@ export class EntryList implements OnChanges {
   @Input() parentEdit: boolean;
   @Input() entries: DictionaryData[];
   @Input() searchTerm: string;
-
+  @Input() shouldHighlight: boolean = false;
   constructor() {
     // this.pageName = modalCtrl.name
+  }
+  ngOnInit() {
+
+    console.log(this.entries)
   }
 
   async showModal(clicked_entry) {
@@ -31,6 +35,8 @@ export class EntryList implements OnChanges {
   }
 
   highlight(text) {
+    console.log(text)
+    console.log(this.searchTerm)
     if (!this.searchTerm) {
       return text;
     }

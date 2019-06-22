@@ -26,7 +26,7 @@ export class MTDService {
         this.remote_data$ = this.http.get(`https://mtd-fv.herokuapp.com/api/v1/languages?name=${this.slug}&only-data=true`, { observe: 'response' });
         this.remote_config$ = this.http.get(`https://mtd-fv.herokuapp.com/api/v1/languages?name=${this.slug}&only-config=true`, { observe: 'response' });
         // TODO: if in storage
-        if (true) {
+        if (false) {
             // TODO: check remote build is newer
             this.remote_config$.subscribe(x => {
                 if (x.status === 200) { // TODO: and storage.config.build < x.build

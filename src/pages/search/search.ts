@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { DictionaryData } from '../../app/models';
 import { MTDService } from '../../services';
-import { Observable, BehaviorSubject } from 'rxjs';
-import { debounceTime, map, switchMap, tap } from 'rxjs/operators';
+import { concat, Observable, BehaviorSubject, of } from 'rxjs';
+import { catchError, debounceTime, map, switchMap, tap, every } from 'rxjs/operators';
 import { FormControl } from "@angular/forms"
 
 @Component({
@@ -22,9 +22,13 @@ export class Search {
   maybeMatches$: Observable<DictionaryData[]>;
   searchControl: FormControl;
   searchQuery$: Observable<string>;
+  placeholder: string = 'Type a word here';
+  language$: Observable<string>;
   constructor(private mtdService: MTDService) {
     this.entries$ = this.mtdService.dataDict$;
     this.searchControl = new FormControl();
+    this.language$ = this.mtdService.name$
+    // this.entries$.subscribe(x => this.placeholder = 'Type a word here to search ' + x.length.toString() + ' words')
   }
 
   ngOnInit() {
@@ -34,16 +38,32 @@ export class Search {
       switchMap((term) => this.entries$.pipe(
         map((entries) => this.getResults(term, entries)))),
     )
-    this.results$.subscribe(x => console.log(x))
+    // this.results$.subscribe(x => console.log(x))
     this.matches$ = this.results$.pipe(
-      map(results => results.filter(r => r['distance'] <= this.matchThreshold))
+      map(results => results.filter(r => r['distance'] <= this.matchThreshold)),
+      catchError(error => of([]))
     )
-    this.matches$.subscribe(x => console.log(x))
+    this.matches$.subscribe(x => console.log(x.length === 0))
     this.partMatches$ = this.results$.pipe(
-      map(results => results.filter(r => (r['distance'] <= this.partMatchThreshold && r['distance'] > this.matchThreshold)))
+      map(results => results.filter(r => (r['distance'] <= this.partMatchThreshold && r['distance'] > this.matchThreshold))),
+      catchError(error => of([]))
     )
+    this.partMatches$.subscribe(x => console.log(x.length === 0))
     this.maybeMatches$ = this.results$.pipe(
-      map(results => results.filter(r => (this.maybeMatchThreshold && r['distance'] > this.partMatchThreshold)))
+      map(results => results.filter(r => (this.maybeMatchThreshold && r['distance'] > this.partMatchThreshold))),
+      catchError(error => of([]))
+    )
+    this.maybeMatches$.subscribe(x => console.log(x.length === 0))
+  }
+
+  anyMatches() {
+    let all_matches$ = concat(
+      this.matches$,
+      this.partMatches$,
+      this.maybeMatches$
+    )
+    return all_matches$.pipe(
+      every(x => x.length === 0)
     )
   }
 

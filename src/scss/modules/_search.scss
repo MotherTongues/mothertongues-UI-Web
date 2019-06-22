@@ -1,0 +1,29 @@
+.search {
+    &__bar {
+        margin: 0 auto;
+        width: em(500);
+    }
+
+    &__results {
+        width: 50%;
+        margin: 5vh auto;
+        border: em(2) solid rgba(map-deep-get($ui-colors, accent), .5);
+        background: rgba(map-deep-get($ui-colors, white), .5);
+        border-radius: em(5);
+
+        &--matches {}
+
+        &--partMatches {}
+
+        &--maybeMatches {}
+
+        &--none {}
+
+        &__container {}
+
+        &__title {
+            text-decoration: underline;
+        }
+    }
+
+}

@@ -22,9 +22,11 @@
 %nav-link {
     text-decoration: none;
     padding: em(5);
+
     &:hover {
         cursor: pointer;
     }
+
     font-family: $font-family-accent;
     font-weight: normal;
     z-index: map-get($zindex, nav);
@@ -32,4 +34,10 @@
 
 %title {
     font-weight: 700;
+}
+
+%content-spacing {
+    margin-left: 15vw;
+    margin-right: 15vw;
+    margin-top: 10vh;
 }

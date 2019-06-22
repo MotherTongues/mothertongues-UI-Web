@@ -1,7 +1,7 @@
 .header {
     &__container {
-        margin-left: 15vw;
-        margin-top: 10vh;
+        @extend %content-spacing;
+        margin-bottom: em(15);
         width: 50%;
 
     }
@@ -17,5 +17,6 @@
         padding: em(5);
         border-radius: em(5);
         display: inline-block;
+        margin-top: 0;
     }
 }

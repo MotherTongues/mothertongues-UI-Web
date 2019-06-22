@@ -18,7 +18,7 @@
   }
 
   .animated {
-    animation: dash 2s;
+    animation: dash 1s;
     -webkit-animation-fill-mode: forwards;
   }
 
@@ -26,9 +26,9 @@
       0% {
         fill: transparent
       }
-      50% {
-        fill: map-get($ui-colors, accent)
-      }
+      // 50% {
+      //   fill: map-get($ui-colors, accent)
+      // }
       100% {
         fill: map-get($ui-colors, white);
       }

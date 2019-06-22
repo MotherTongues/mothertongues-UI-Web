@@ -1,8 +1,11 @@
 .page {
-   &__content {
-    margin-top: em(50);
-    @include mq(em(1920), 'min-width') {
-        margin-top: 10vh;
-    }
+    &__content {
+        @extend %content-spacing;
+        @include mq(em(1920), 'min-width') {
+            margin-top: 10vh;
+        }
+        &--center {
+            text-align: center;
+        }
     }
 }

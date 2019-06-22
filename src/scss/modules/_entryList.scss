@@ -1,0 +1,46 @@
+%matched {
+    background: map-deep-get($ui-colors, accent);
+    color: map-deep-get($ui-colors, white);
+    border-radius: em(5);
+    font-weight: 900;
+    padding: em(3);
+}
+
+.match {
+    &__container {
+        margin: em(20) auto;
+        height: auto;
+        width: auto;
+        text-align: center;
+
+        &--left {
+            margin-right: .2em;
+            text-align: left;
+            display: initial;
+        }
+
+        &--right {
+            margin-left: .2em;
+            display: initial;
+        }
+    }
+
+    &__term {
+        &--target {
+            margin: 2.5em 0 .75em 0;
+
+            &.langMatched {
+                @extend %matched;
+            }
+        }
+
+        &--translation {
+            margin: 2.5em 0 .75em 0;
+
+            .langMatched {
+                @extend %matched;
+            }
+        }
+
+    }
+}
