@@ -15,11 +15,13 @@ export class BookmarkService {
 
     setBookmarks(val) {
         this.bookmarks.next(val)
+        console.log(val)
         // this.storage.set(this.config.L1.name, JSON.stringify(val));
         // this.storage.set(this.config.L1.name + this.config.build, JSON.stringify(val));
     }
 
     toggleBookmark(entry) {
+        console.log(entry)
         let i = this.bookmarks.value.indexOf(entry)
         let bookmarks;
         if (i > -1) {

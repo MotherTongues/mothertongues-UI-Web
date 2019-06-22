@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatButtonModule, MatIconModule } from '@angular/material';
 
 import { EntryList } from './entry-list.component';
 
@@ -9,6 +10,8 @@ import { EntryList } from './entry-list.component';
     imports: [
         CommonModule,
         FormsModule,
+        MatButtonModule,
+        MatIconModule,
     ],
     declarations: [EntryList],
     exports: [EntryList]

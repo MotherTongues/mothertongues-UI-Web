@@ -4,9 +4,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { EntryListModule } from '../shared/entry-list.module'
 import { Random } from './random';
+import { MatButtonModule } from '@angular/material'
 
 @NgModule({
   imports: [
+    MatButtonModule,
     CommonModule,
     FormsModule,
     EntryListModule,

@@ -5,11 +5,7 @@
     }
 
     &__results {
-        width: 50%;
-        margin: 5vh auto;
-        border: em(2) solid rgba(map-deep-get($ui-colors, accent), .5);
-        background: rgba(map-deep-get($ui-colors, white), .5);
-        border-radius: em(5);
+        @extend %results;
 
         &--matches {}
 

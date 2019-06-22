@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
-import { DictionaryData } from './models'
-import { BookmarkService, MTDService } from '../services'
-import { Search } from '../pages'
+import { DictionaryData } from './models';
+import { BookmarkService, MTDService } from '../services';
+import { Search } from '../pages';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { SettingsDialog, SettingsDialogData } from '../pages/shared/settings.component'
 
 @Component({
   selector: 'mtd-root',
@@ -11,7 +13,7 @@ import { Search } from '../pages'
 export class MTDApp {
   bookmarks: DictionaryData[];
   rootPage: any = Search;
-
+  settings: SettingsDialogData = { name: 'bloop' };
   public appPages: Array<{ title: string, icon?: any, url: string }> = [
     { title: "Home", url: '/' },
     { title: "Search", url: '/search' },
@@ -22,7 +24,7 @@ export class MTDApp {
     { title: "About", url: '/about' }
   ];
 
-  constructor(private router: Router, private bookmarkService: BookmarkService, private mtdService: MTDService) {
+  constructor(private router: Router, private bookmarkService: BookmarkService, public dialog: MatDialog, private mtdService: MTDService) {
 
     this.mtdService.config$.subscribe((x) => {
       // console.log('pre-ready updated')
@@ -70,6 +72,17 @@ export class MTDApp {
   }
 
 
+  openSettings(): void {
+    const dialogRef = this.dialog.open(SettingsDialog, {
+      width: '250px',
+      data: { name: 'test' }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.settings['name'] = result;
+    });
+  }
 
 
   openPage(page) {

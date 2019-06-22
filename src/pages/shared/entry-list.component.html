@@ -1,14 +1,14 @@
-<!-- <ion-list> -->
-<div class="match__container" (click)="showModal(entry)" *ngFor="let entry of entries" text-wrap>
-  <!-- <ion-checkbox color="danger" checked="false" *ngIf="edit" [(ngModel)]="entry.checked"></ion-checkbox> -->
-  <!-- <ion-label> -->
-  <div class="match__container--left">
+<div class="match__container" *ngFor="let entry of entries" text-wrap>
+  <button mat-icon-button aria-label="Example icon-button with a heart icon" (click)="entry.favorited = !entry.favorited; toggleBookmark(entry)">
+    <mat-icon *ngIf="!entry.favorited">bookmark_border</mat-icon>
+    <mat-icon *ngIf="entry.favorited" class='color-accent'>bookmark</mat-icon>
+  </button>
+  <div class="match__container--left" (click)="showModal()">
     <span class='match__term--target'
       [ngClass]="{'langMatched': entry.type === 'L1' && shouldHighlight}">{{entry.word}}</span>
   </div>
-  <div class="match__container--right">
-    <span class="match__term--translation" [innerHTML]="highlight(entry.definition)"></span>
+  <div class="match__container--right" (click)="showModal()">
+    <span *ngIf='shouldHighlight' class="match__term--translation" [innerHTML]="highlight(entry.definition)"></span>
+    <span *ngIf='!shouldHighlight' class="match__term--translation">{{entry.definition}}</span>
   </div>
-  <!-- </ion-label> -->
 </div>
-<!-- </ion-list> -->

@@ -1,6 +1,7 @@
 import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 import { WordModal } from './word-modal.component'
 import { DictionaryData } from '../../app/models'
+import { BookmarkService } from '../../services/bookmark.service'
 
 @Component({
   selector: 'entry-list',
@@ -17,7 +18,7 @@ export class EntryList implements OnChanges {
   @Input() entries: DictionaryData[];
   @Input() searchTerm: string;
   @Input() shouldHighlight: boolean = false;
-  constructor() {
+  constructor(private bookmarkService: BookmarkService) {
     // this.pageName = modalCtrl.name
   }
   ngOnInit() {
@@ -27,20 +28,17 @@ export class EntryList implements OnChanges {
 
   async showModal(clicked_entry) {
     console.log('show modal')
-    // let wordModal = await this.modalCtrl.create({
-    //   component: WordModal,
-    //   componentProps: { entry: clicked_entry }
-    // });
-    // await wordModal.present();
   }
 
   highlight(text) {
-    console.log(text)
-    console.log(this.searchTerm)
     if (!this.searchTerm) {
       return text;
     }
     return text.replace(new RegExp(this.searchTerm, 'gi'), '<span class="langMatched">$&</span>');
+  }
+
+  toggleBookmark(entry){
+    this.bookmarkService.toggleBookmark(entry)
   }
 
   ngOnChanges() {

@@ -10,11 +10,13 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http'
 import { RouteReuseStrategy } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
-import { EntryList, WordModal, Flashcard, LogoAnime } from '../pages'
+import { LogoAnime } from '../pages'
 import { BookmarkService, MTDService } from '../services'
 import { PipesModule } from '../pipes/pipes.module'
 import { EntryListModule } from '../pages/shared/entry-list.module'
 import { WordModalPageModule } from '../pages/shared/word-modal.module';
+import { SettingsModule } from '../pages/shared/settings.module'
+import { SettingsDialog } from '../pages/shared/settings.component'
 // import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
@@ -24,10 +26,10 @@ import { environment } from '../environments/environment';
     LogoAnime
   ],
   imports: [
-    MatIconModule,
-    MatMenuModule,
     BrowserModule,
     BrowserAnimationsModule,
+    MatIconModule,
+    MatMenuModule,
     AppRoutingModule,
     BrowserModule,
     HttpClientModule,
@@ -37,16 +39,14 @@ import { environment } from '../environments/environment';
     EntryListModule,
     WordModalPageModule,
     PipesModule,
+    SettingsModule,
   
     // ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   entryComponents: [
     MTDApp,
     LogoAnime,
-    // EntryList,
-    // WordModal,
-    // EntryListModule,
-    // Flashcard,
+    SettingsDialog,
   ],
   providers: [BookmarkService, MTDService],
   bootstrap: [MTDApp]

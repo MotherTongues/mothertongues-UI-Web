@@ -15,14 +15,16 @@
           <a class="navbar__link" routerLink="random">Random</a>
         </li>
         <li class="navbar__item" [routerLinkActive]="['navbar__item--active']">
-          <a class="navbar__link" routerLink="flashcars">Flashcards</a>
-        </li>
-        <li class="navbar__item">
-          <a class="navbar__link" (click)="openSettings()">Settings</a>
+          <a class="navbar__link" routerLink="flashcards">Flashcards</a>
         </li>
         <li class="navbar__item" [routerLinkActive]="['navbar__item--active']">
           <a class="navbar__link" routerLink="about">About</a>
         </li>
+        |
+        <li class="navbar__item">
+          <a class="navbar__link" (click)="openSettings()">Settings</a>
+        </li>
+
       </ul>
     </div>
     <button class="nav-container__content--mobile" mat-icon-button [matMenuTriggerFor]="menu">
