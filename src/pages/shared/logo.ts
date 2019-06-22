@@ -15,13 +15,14 @@ export class LogoAnime {
   }
   ngAfterViewInit() {
     anime({
-        targets: '#lineDrawing .lines path',
+        targets: '.lineDrawing .lines path',
         strokeDashoffset: [anime.setDashoffset, 0],
         easing: 'easeInOutCubic',
         color: "#000",
         duration: 550,
           complete: function(anim) {
-            document.getElementById('svgGroup').classList.add('animated')
+            document.getElementById('svgGroupTree').classList.add('animated')
+            document.getElementById('svgGroupText').classList.add('animated')
           },
         delay: function(el, i) { return i * 450 },
       });

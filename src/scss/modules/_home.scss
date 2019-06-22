@@ -1,0 +1,21 @@
+.header {
+    &__container {
+        margin-left: 15vw;
+        margin-top: 10vh;
+        width: 50%;
+
+    }
+    &__title {
+        font-size: em(48);
+        font-weight: 200;
+        color: map-get($ui-colors, white);
+        letter-spacing: em(1);
+    }
+    &__subheader {
+        color: white;
+        background: rgba(0,0,0,.5);
+        padding: em(5);
+        border-radius: em(5);
+        display: inline-block;
+    }
+}
