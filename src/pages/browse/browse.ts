@@ -85,7 +85,7 @@ export class Browse {
       this.startIndex += 10
       this.currentTen$ = this.getTenFrom(this.startIndex)
     } else {
-      this.startIndex = this.currentEntries$.getValue().length - 10
+      this.startIndex = Math.max(this.currentEntries$.getValue().length - 10, 0)
       this.currentTen$ = this.getTenFrom(this.startIndex)
     }
   }

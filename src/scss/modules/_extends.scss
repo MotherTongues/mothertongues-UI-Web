@@ -43,7 +43,8 @@
 }
 
 %results {
-    width: 50%;
+    width: 70%;
+    max-width: em(850);
     margin: 5vh auto;
     border: em(2) solid rgba(map-deep-get($ui-colors, accent), .5);
     background: rgba(map-deep-get($ui-colors, white), .5);

@@ -1,22 +1,30 @@
-<h1>Browse</h1>
-
-
-<!-- <ion-list class='no-margin' mode="ios">
-  <ion-item mode="ios">
-    <ion-label class="label-left" mode="ios">Select a Category</ion-label>
-    <ion-select mode="ios" [(ngModel)]="selectedCategory" (ngModelChange)="selectCategory(selectedCategory)"
-      [interfaceOptions]="categorySelectOptions">
-      <ion-select-option *ngFor='let category of displayCategories$ | async'>{{category}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-  <ion-item mode="ios">
-    <ion-label class="label-left" mode="ios">Select a Letter</ion-label>
-    <ion-select mode="ios" [(ngModel)]="selectedLetter" (ngModelChange)="scrollTo($event)"
-      [interfaceOptions]="letterSelectOptions">
-      <ion-select-option *ngFor='let letter of displayLetters$ | async'>{{letter}}</ion-select-option>
-    </ion-select>
-  </ion-item>
-</ion-list> -->
-<div class="entry-container" *ngIf="currentTen$ | async as currentTen">
-  <entry-list [entries]='currentTen'></entry-list>
+<div class='page__content page__content--center'>
+  <div class='browse__categories'></div>
+  <div class='browse__alphabet'></div>
+  <div class="browse__entries" *ngIf="currentTen$ | async as currentTen">
+    <mat-toolbar class='browse__toolbar'>
+      <button color='accent' class='browse__nav browse__nav--left browse__nav--web color-white' mat-flat-button
+        aria-label="See previous entries" (click)="prev10()">
+        <mat-icon class='browse__nav--left--icon'>navigate_before</mat-icon>
+        <span class='browse__nav--left--text'>Previous
+        </span>
+      </button>
+      <button color='accent' class='browse__nav browse__nav--left browse__nav--mobile' mat-icon-button
+        aria-label="See previous entries" (click)="prev10()">
+        <mat-icon class='browse__nav--left--icon'>navigate_before</mat-icon>
+      </button>
+      <p class='browse__entries--progress'>showing entries {{ startIndex + 1 }} to {{ (currentTen$ | async)?.length }}
+        of {{ (currentEntries$ | async )?.length }} </p>
+      <button class='browse__nav browse__nav--right color-white browse__nav--web' color='accent' mat-flat-button
+        aria-label="See following entries" (click)="next10()">
+        <span class='browse__nav--right--text'>Next</span>
+        <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
+      </button>
+      <button class='browse__nav browse__nav--right browse__nav--mobile' color='accent' mat-icon-button
+      aria-label="See following entries" (click)="next10()">
+      <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
+    </button>
+    </mat-toolbar>
+    <entry-list [entries]='currentTen'></entry-list>
+  </div>
 </div>
