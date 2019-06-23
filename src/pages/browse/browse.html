@@ -1,5 +1,15 @@
 <div class='page__content page__content--center'>
-  <div class='browse__categories'></div>
+  <div class='browse__categories'>
+    <mat-form-field>
+      <mat-label>Select a Category</mat-label>
+      <mat-select (selectionChange)="selectCategory($event.value)">
+        <mat-option value='words'>All Entries</mat-option>
+        <mat-option *ngFor="let cat of displayCategories$ | async" [value]='cat'>
+          {{cat}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div class='browse__alphabet'></div>
   <div class="browse__entries" *ngIf="currentTen$ | async as currentTen">
     <mat-toolbar class='browse__toolbar'>
@@ -21,9 +31,9 @@
         <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
       </button>
       <button class='browse__nav browse__nav--right browse__nav--mobile' color='accent' mat-icon-button
-      aria-label="See following entries" (click)="next10()">
-      <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
-    </button>
+        aria-label="See following entries" (click)="next10()">
+        <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
+      </button>
     </mat-toolbar>
     <entry-list [entries]='currentTen'></entry-list>
   </div>

@@ -104,7 +104,17 @@ export class Browse {
   }
 
   selectCategory(category: string) {
-    this.currentEntries$.next(this.mtdService.categories$[category]);
+    if (category === 'words') {
+      this.mtdService.dataDict$.pipe(
+        map(x => this.currentEntries$.next(x))
+      ).subscribe().unsubscribe()
+    } else {
+      this.mtdService.categories$.pipe(
+        map(x =>
+          this.currentEntries$.next(x[category])
+        )).subscribe().unsubscribe()
+    }
+    this.selectedCategory = category
     this.currentTen$ = this.getTenFrom(0)
     this.letterInit()
   }
