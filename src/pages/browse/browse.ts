@@ -95,7 +95,7 @@ export class Browse {
   scrollTo(letter: string) {
     let letterIndex = this.letters.indexOf(letter)
     for (let entry of this.currentEntries$.getValue()) {
-      if (entry.firstWordIndex === letterIndex) {
+      if (entry.sorting_form[0] === letterIndex) {
         this.startIndex = this.currentEntries$.getValue().indexOf(entry)
         this.currentTen$ = this.getTenFrom(this.startIndex)
         break;

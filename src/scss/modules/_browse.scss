@@ -1,7 +1,18 @@
 .browse {
     &__categories {}
 
-    &__alphabet {}
+    &__alphabet {
+        &__container {}
+
+        &__grid {
+            width: 33vw;
+            margin: 0 auto;
+        }
+
+        &__letter {
+            border: em(1) solid map-deep-get($ui-colors, black)
+        }
+    }
 
     &__entries {
         @extend %results;

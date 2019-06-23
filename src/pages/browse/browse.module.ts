@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatButtonModule, MatIconModule, MatSelectModule, MatToolbarModule } from '@angular/material'
+import { MatButtonModule, MatGridListModule, MatIconModule, MatSelectModule, MatToolbarModule } from '@angular/material'
 
 import { Browse } from './browse';
 import { EntryListModule } from '../shared/entry-list.module';
@@ -16,6 +16,7 @@ import { EntryListModule } from '../shared/entry-list.module';
     MatIconModule,
     MatToolbarModule,
     MatSelectModule,
+    MatGridListModule,
     RouterModule.forChild([
       {
         path: '',

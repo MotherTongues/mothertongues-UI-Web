@@ -10,7 +10,13 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <div class='browse__alphabet'></div>
+  <div class='browse__alphabet__container'>
+    <mat-grid-list class='browse__alphabet__grid' cols="6" rowHeight="20px" rowWidth='20px' gutterSize='1px'>
+      <mat-grid-tile class='browse__alphabet__letter' *ngFor="let letter of letters" [colspan]="1" [rowspan]="1">
+        <button mat-button (click)='scrollTo(letter)'>{{letter}}</button>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </div>
   <div class="browse__entries" *ngIf="currentTen$ | async as currentTen">
     <mat-toolbar class='browse__toolbar'>
       <button color='accent' class='browse__nav browse__nav--left browse__nav--web color-white' mat-flat-button
