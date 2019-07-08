@@ -1,11 +1,16 @@
 .browse {
     &__categories {}
 
+    &__controls {
+        &__container {
+        }
+    }
+
     &__alphabet {
         &__container {}
 
         &__grid {
-            width: 33vw;
+            width: 100%;
             margin: 0 auto;
         }
 
@@ -21,6 +26,10 @@
         &--progress {
             margin: 0 auto !important;
             font-size: smaller;
+        }
+
+        &__container {
+
         }
     }
 
