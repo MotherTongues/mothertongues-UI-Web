@@ -8,25 +8,31 @@
 
 .match {
     &__container {
-        margin: em(20) auto;
+        margin: 0 auto;
         height: auto;
         width: auto;
         text-align: center;
-        line-height: em(40);
+        // line-height: em(40);
 
         &--left {
             margin-right: .2em;
             text-align: left;
-            display: initial;
+            display: inherit;
         }
 
         &--right {
             margin-left: .2em;
-            display: initial;
+            display: inherit;
         }
     }
 
     &__term {
+        display: table-cell;
+        vertical-align: middle;
+        padding: em(8) 0;
+        &__container {
+            display: table;
+        }
         &--target {
             margin: 2.5em 0 .75em 0;
 

@@ -1,6 +1,6 @@
 <div class='page__content page__content--center container'>
   <div class='container__row'>
-    <div class="browse__controls__container container__col--offset--1 container__col--3">
+    <div class="browse__controls__container container__col--offset--1 container__col--4">
       <div class='browse__categories'>
         <mat-form-field>
           <mat-label>Select a Category</mat-label>
@@ -14,39 +14,39 @@
       </div>
       <div class='browse__alphabet__container'>
         <ul class='browse__alphabet__grid'>
-          <li class='browse__alphabet__letter' [class.chosen]='i === selectedLetter' *ngFor="let letter of letters; let i = index">
+          <li class='browse__alphabet__letter' [class.chosen]='i === currentX[0]["sorting_form"][0]' *ngFor="let letter of letters; let i = index">
             <button mat-button (click)='scrollTo(letter)'>{{letter}}</button>
           </li>
         </ul>
       </div>
     </div>
-    <div class="browse__entries__container container__col--8">
-      <div class="browse__entries" *ngIf="currentTen$ | async as currentTen">
+    <div class="browse__entries__container container__col--7">
+      <div class="browse__entries" *ngIf="currentX">
         <mat-toolbar class='browse__toolbar'>
           <button color='accent' class='browse__nav browse__nav--left browse__nav--web color-white' mat-flat-button
-            aria-label="See previous entries" (click)="prev10()">
+            aria-label="See previous entries" (click)="prevX()">
             <mat-icon class='browse__nav--left--icon'>navigate_before</mat-icon>
             <span class='browse__nav--left--text'>Previous
             </span>
           </button>
           <button color='accent' class='browse__nav browse__nav--left browse__nav--mobile' mat-icon-button
-            aria-label="See previous entries" (click)="prev10()">
+            aria-label="See previous entries" (click)="prevX()">
             <mat-icon class='browse__nav--left--icon'>navigate_before</mat-icon>
           </button>
-          <p class='browse__entries--progress'>showing entries {{ startIndex + 1 }} to
-            {{ (currentTen$ | async)?.length }}
+          <p class='browse__entries--progress'>showing entries {{ (startIndex$ | async) + 1 }} to
+            {{ (startIndex$ | async) + 1 + currentX.length }}
             of {{ (currentEntries$ | async )?.length }} </p>
           <button class='browse__nav browse__nav--right color-white browse__nav--web' color='accent' mat-flat-button
-            aria-label="See following entries" (click)="next10()">
+            aria-label="See following entries" (click)="nextX()">
             <span class='browse__nav--right--text'>Next</span>
             <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
           </button>
           <button class='browse__nav browse__nav--right browse__nav--mobile' color='accent' mat-icon-button
-            aria-label="See following entries" (click)="next10()">
+            aria-label="See following entries" (click)="nextX()">
             <mat-icon class='browse__nav--right--icon'>navigate_next</mat-icon>
           </button>
         </mat-toolbar>
-        <entry-list [entries]='currentTen'></entry-list>
+        <entry-list [entries]='currentX'></entry-list>
       </div>
     </div>
   </div>

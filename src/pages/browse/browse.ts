@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { BookmarkService, MTDService } from '../../services'
 import { DictionaryData } from '../../app/models';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators'
+import { map, tap } from 'rxjs/operators'
 
 @Component({
   selector: 'page-browse',
@@ -12,15 +12,15 @@ import { map } from 'rxjs/operators'
 export class Browse {
 
   currentEntries$: BehaviorSubject<DictionaryData[]>;
-  currentTen$: Observable<DictionaryData[]>;
+  currentX: DictionaryData[];
   displayCategories$: Observable<any>;
   displayLetters$: Observable<any>;
   letters: string[];
   initialLetters: string[];
   selectedCategory: string = "words";
   selectedLetter: number;
-  startIndex: number = 0;
-
+  startIndex$: BehaviorSubject<number> = new BehaviorSubject(0);
+  default_shown: number = 8;
   // currentBrowsingLetter: String = this.letters[this.currentBrowsingEntries[0].sorting_form[0]];
   letterSelectOptions: Object = { header: "Select a Letter" };
   categorySelectOptions: Object = { header: "Select a Category" };
@@ -33,18 +33,18 @@ export class Browse {
       this.currentEntries$.next(x);
       this.initializeEntries();
     })
-    this.currentTen$ = this.getTenFrom(0)
+    this.currentEntries$.pipe(
+      map(entries => this.getXFrom(this.startIndex$.value, entries))
+    ).subscribe(entries => this.currentX = entries)
+
+    this.startIndex$.pipe(
+      map(i => this.getXFrom(i, this.currentEntries$.getValue()))
+    ).subscribe(entries => this.currentX = entries)
     this.initializeEntries();
   }
 
-  getTenFrom(i) {
-    return this.currentEntries$.asObservable().pipe(
-      map((x) => x.slice(i, 10))
-    )
-  }
-
-  highlightLetter() {
-    this.selectedLetter = this.currentEntries$.value[0]['sorting_form'][0]
+  getXFrom(i: number, entries: DictionaryData[], x: number = this.default_shown): DictionaryData[] {
+    return entries.slice(i, i + x);
   }
 
   initializeEntries() {
@@ -71,41 +71,36 @@ export class Browse {
         return newLetters;
       })
     )
-    this.highlightLetter()
   }
-  // Scroll to previous 10 entries
-  prev10() {
-    if (this.startIndex - 10 > 0) {
-      this.startIndex -= 10
+  // Scroll to previous X entries
+  prevX() {
+    let current_val = this.startIndex$.value
+    if (current_val - this.default_shown > 0) {
+      this.startIndex$.next(current_val -= this.default_shown)
     } else {
-      this.startIndex = 0
+      this.startIndex$.next(0)
     }
-    this.currentTen$ = this.getTenFrom(this.startIndex)
   }
 
-  // Scroll to next 10 entries
-  next10() {
-    if (this.startIndex + 10 < this.currentEntries$.getValue().length) {
-      this.startIndex += 10
-      this.currentTen$ = this.getTenFrom(this.startIndex)
+  // Scroll to next X entries
+  nextX() {
+    let current_val = this.startIndex$.value
+    if (current_val + this.default_shown < this.currentEntries$.getValue().length) {
+      this.startIndex$.next(current_val += this.default_shown)
     } else {
-      this.startIndex = Math.max(this.currentEntries$.getValue().length - 10, 0)
-      this.currentTen$ = this.getTenFrom(this.startIndex)
+      this.startIndex$.next(Math.max(this.currentEntries$.getValue().length - this.default_shown, 0))
     }
   }
 
   // Scroll to letter
-  // Still needed: change selected letter dynamically
   scrollTo(letter: string) {
     let letterIndex = this.letters.indexOf(letter)
     for (let entry of this.currentEntries$.getValue()) {
       if (entry.sorting_form[0] === letterIndex) {
-        this.startIndex = this.currentEntries$.getValue().indexOf(entry)
-        this.currentTen$ = this.getTenFrom(this.startIndex)
+        this.startIndex$.next(this.currentEntries$.getValue().indexOf(entry))
         break;
       }
     }
-    this.highlightLetter()
   }
 
   selectCategory(category: string) {
@@ -120,7 +115,7 @@ export class Browse {
         )).subscribe().unsubscribe()
     }
     this.selectedCategory = category
-    this.currentTen$ = this.getTenFrom(0)
+    this.startIndex$.next(0)
     this.letterInit()
   }
 }

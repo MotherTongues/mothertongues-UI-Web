@@ -14,7 +14,7 @@
         &__container {}
 
         &__grid {
-            width: 95%;
+            width: 90%;
             margin: 0 auto;
             list-style-type: none;
             margin: 15px 15px 25px 35px;
@@ -39,8 +39,10 @@
 
     &__entries {
         @extend %results;
+        height: auto;
+        max-height: 650px;
         min-height: 650px;
-
+        overflow-y: auto;
         &--progress {
             margin: 0 auto !important;
             font-size: smaller;
