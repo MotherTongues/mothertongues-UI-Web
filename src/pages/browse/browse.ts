@@ -14,11 +14,11 @@ export class Browse {
   currentEntries$: BehaviorSubject<DictionaryData[]>;
   currentTen$: Observable<DictionaryData[]>;
   displayCategories$: Observable<any>;
-  displayLetters$: Observable<string[]>;
+  displayLetters$: Observable<any>;
   letters: string[];
   initialLetters: string[];
   selectedCategory: string = "words";
-  selectedLetter: string;
+  selectedLetter: number;
   startIndex: number = 0;
 
   // currentBrowsingLetter: String = this.letters[this.currentBrowsingEntries[0].sorting_form[0]];
@@ -41,6 +41,10 @@ export class Browse {
     return this.currentEntries$.asObservable().pipe(
       map((x) => x.slice(i, 10))
     )
+  }
+
+  highlightLetter() {
+    this.selectedLetter = this.currentEntries$.value[0]['sorting_form'][0]
   }
 
   initializeEntries() {
@@ -67,7 +71,7 @@ export class Browse {
         return newLetters;
       })
     )
-
+    this.highlightLetter()
   }
   // Scroll to previous 10 entries
   prev10() {
@@ -101,6 +105,7 @@ export class Browse {
         break;
       }
     }
+    this.highlightLetter()
   }
 
   selectCategory(category: string) {

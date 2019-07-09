@@ -46,7 +46,7 @@ h6 {
   // font-family: $font-family-display;
   font-family: $font-family-accent;
   font-weight: normal;
-  @include colors($ui-colors);
+  @include colors($ui-colors-base);
 }
 
 p, mat-chip, mat-tab-label, span, button, a {
@@ -77,11 +77,11 @@ p, mat-chip, mat-tab-label, span, button, a {
 // Colors
 
 span, p, mat-chip, mat-button-toggle, button, mat-icon {
-  @include colors($ui-colors);
+  @include colors($ui-colors-base);
 }
 
 div, nav, button, mat-chip, mat-toolbar, mat-grid-tile {
-  @include bg-colors($ui-colors);
+  @include bg-colors($ui-colors-base);
 }
 
 @each $name, $value in $font-sizes {

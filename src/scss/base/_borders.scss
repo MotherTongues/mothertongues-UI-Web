@@ -42,5 +42,5 @@ $border-radius-default: 5px;
 }
 
 mat-chip, div {
-    @include border-colors($ui-colors);
+    @include border-colors($ui-colors-base);
 }

@@ -1,6 +1,6 @@
 %matched {
-    background: map-deep-get($ui-colors, accent);
-    color: map-deep-get($ui-colors, white);
+    background: map-deep-get($ui-colors, accent, color);
+    color: map-deep-get($ui-colors, accent, contrast);
     border-radius: em(5);
     font-weight: 900;
     padding: em(3);

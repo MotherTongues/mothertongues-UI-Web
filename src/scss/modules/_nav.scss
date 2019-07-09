@@ -2,7 +2,7 @@
     display: inline-flex;
     background: transparent;
     height: 6em;
-    background: map-get($ui-colors, white );
+    background: map-deep-get($ui-colors, white, color);
     &__subheader {
         left: em(35);
         top: em(80);
@@ -37,9 +37,9 @@
         @extend %nav-item;
         &--active {
             margin-top: em(2);
-            background: map-get($ui-colors, black);
+            background: map-deep-get($ui-colors, black, color);
             a {
-                color: map-get($ui-colors, white);
+                color: map-deep-get($ui-colors, black, contrast);
             }
         }
     }

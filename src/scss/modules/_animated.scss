@@ -10,7 +10,7 @@
 }
 
 #svgGroupTree, #svgGroupText {
-    stroke: map-get($ui-colors, white) !important;
+    stroke: map-deep-get($ui-colors, white, color) !important;
     stroke-width: 0.25mm;
     fill: transparent;
     stroke-dasharray: 700;
@@ -26,10 +26,7 @@
       0% {
         fill: transparent
       }
-      // 50% {
-      //   fill: map-get($ui-colors, accent)
-      // }
       100% {
-        fill: map-get($ui-colors, white);
+        fill: map-deep-get($ui-colors, white, color);
       }
   }

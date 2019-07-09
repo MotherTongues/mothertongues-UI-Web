@@ -1,21 +1,39 @@
+.chosen {
+    background-color: map-deep-get($ui-colors, accent, color);
+    color: map-deep-get($ui-colors, accent, contrast);
+}
+
 .browse {
     &__categories {}
 
     &__controls {
-        &__container {
-        }
+        &__container {}
     }
 
     &__alphabet {
         &__container {}
 
         &__grid {
-            width: 100%;
+            width: 95%;
             margin: 0 auto;
+            list-style-type: none;
+            margin: 15px 15px 25px 35px;
+            padding: 0;
+            overflow: hidden;
+            background-color: lighten(map-deep-get($ui-colors, white, contrast), 15);
+            opacity: 0.95;
+            border-radius: 15px;
         }
 
         &__letter {
-            border: em(1) solid map-deep-get($ui-colors, black)
+            display: block;
+            color: map-deep-get($ui-colors, white, color);
+            text-align: center;
+            padding: em(5);
+            text-decoration: none;
+            float: left;
+            cursor: pointer;
+            border: em(1) solid map-deep-get($ui-colors, white, contrast)
         }
     }
 
@@ -28,9 +46,7 @@
             font-size: smaller;
         }
 
-        &__container {
-
-        }
+        &__container {}
     }
 
     &__toolbar {}

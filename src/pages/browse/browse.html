@@ -13,11 +13,11 @@
         </mat-form-field>
       </div>
       <div class='browse__alphabet__container'>
-        <mat-grid-list class='browse__alphabet__grid' cols="6" rowHeight="20px" rowWidth='20px' gutterSize='1px'>
-          <mat-grid-tile class='browse__alphabet__letter' *ngFor="let letter of letters" [colspan]="1" [rowspan]="1">
+        <ul class='browse__alphabet__grid'>
+          <li class='browse__alphabet__letter' [class.chosen]='i === selectedLetter' *ngFor="let letter of letters; let i = index">
             <button mat-button (click)='scrollTo(letter)'>{{letter}}</button>
-          </mat-grid-tile>
-        </mat-grid-list>
+          </li>
+        </ul>
       </div>
     </div>
     <div class="browse__entries__container container__col--8">
