@@ -1,7 +1,10 @@
-<h1>Bookmarks</h1>
-
-<entry-list [entries]='bookmarks' [parentEdit]="edit"></entry-list>
-<div class='center'>
-  <button color="danger" class="remove" *ngIf="edit" (click)="removeEntries(bookmarks)">Remove selected
-    bookmarks</button>
+<div class='page__content page__content--center container'>
+  <h1>Bookmarks</h1>
+  <div class="results">
+    <entry-list [entries]='bookmarks' [parentEdit]="edit"></entry-list>
+  </div>
+  <div class='center'>
+    <button color="danger" class="remove" *ngIf="edit" (click)="removeEntries(bookmarks)">Remove selected
+      bookmarks</button>
+  </div>
 </div>

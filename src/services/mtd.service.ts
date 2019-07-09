@@ -130,7 +130,9 @@ export class MTDService {
     }
 
     get dataDict$() {
-        return this._dictionary_data$.asObservable()
+        return this._dictionary_data$.asObservable().pipe(
+            map(entries => entries.sort(function (a, b) { return a['sorting_form'][0] - b['sorting_form'][0] }))
+        )
     }
 
     get config_value() {

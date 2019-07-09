@@ -8,20 +8,16 @@ export class BookmarkService {
     public bookmarks = new BehaviorSubject<DictionaryData[]>([]);
     config: Config;
     constructor(private mtdService: MTDService) {
-  
         this.config = this.mtdService.config_value
-
     }
 
     setBookmarks(val) {
         this.bookmarks.next(val)
-        console.log(val)
-        // this.storage.set(this.config.L1.name, JSON.stringify(val));
-        // this.storage.set(this.config.L1.name + this.config.build, JSON.stringify(val));
+        let vals = val.map(x=>x['entryID'])
+        localStorage.setItem(this.config.L1.name + this.config.build, JSON.stringify(vals));
     }
 
     toggleBookmark(entry) {
-        console.log(entry)
         let i = this.bookmarks.value.indexOf(entry)
         let bookmarks;
         if (i > -1) {

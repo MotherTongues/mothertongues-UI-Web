@@ -42,27 +42,27 @@ export class MTDApp {
 
       let language_name = config.L1.name
       let build_no = config.build
-      let id = language_name
+      let id = language_name + build_no
 
       this.mtdService.dataDict$.subscribe((dataDict) => {
         // retrieve favourited entries from storage and tag favourited entries
-        // this.storage.get(id).then((val) => {
-        //   if (val) {
-        //     val = JSON.parse(val);
-        //     let favs = [];
-        //     for (let fav of val) {
-        //       for (let entry of dataDict.filter(x => x['source'] == fav['source'])) {
-        //         if (entry.entryID === fav.entryID) {
-        //           entry['favourited'] = true;
-        //           favs.push(entry)
-        //           break;
-        //         }
-        //       }
-        //     }
-        //     this.bookmarkService.setBookmarks(favs)
-        //   }
-        // })
-
+        let val = localStorage.getItem(id)
+        if (val) {
+          console.log(val)
+          val = JSON.parse(val);
+          let favs = [];
+          for (let fav of val) {
+            for (let entry of dataDict) {
+              if (entry.entryID === fav) {
+                entry['favourited'] = true;
+                favs.push(entry)
+                break;
+              }
+            }
+          }
+          this.bookmarkService.setBookmarks(favs)
+        }
+        console.log(this.bookmarkService.bookmarks.value)
       })
 
 

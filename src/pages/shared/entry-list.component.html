@@ -1,9 +1,9 @@
 <div class='container margin-top-15'>
   <div class="match__container container__row" *ngFor="let entry of entries" text-wrap>
     <button class='container__col--1' mat-icon-button aria-label="Example icon-button with a heart icon"
-      (click)="entry.favorited = !entry.favorited; toggleBookmark(entry)">
-      <mat-icon *ngIf="!entry.favorited">bookmark_border</mat-icon>
-      <mat-icon *ngIf="entry.favorited" class='color-accent'>bookmark</mat-icon>
+      (click)="entry.favourited = !entry.favourited; toggleBookmark(entry)">
+      <mat-icon *ngIf="!entry.favourited">bookmark_border</mat-icon>
+      <mat-icon *ngIf="entry.favourited" class='color-accent'>bookmark</mat-icon>
     </button>
     <div class="container__col--offset--1 container__col--4 match__term__container" (click)="showModal()">
       <span class='match__term match__term--target'
