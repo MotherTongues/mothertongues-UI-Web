@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatInputModule, MatFormFieldModule, } from '@angular/material'
 
-import { Search } from './search';
+import { SearchComponent } from './search';
 import { EntryListModule } from '../shared/entry-list.module';
 
 @NgModule({
@@ -18,11 +18,11 @@ import { EntryListModule } from '../shared/entry-list.module';
     RouterModule.forChild([
       {
         path: '',
-        component: Search
+        component: SearchComponent
       }
     ])
   ],
-  declarations: [Search],
+  declarations: [SearchComponent],
 //   entryComponents: []
 })
 export class SearchPageModule {}

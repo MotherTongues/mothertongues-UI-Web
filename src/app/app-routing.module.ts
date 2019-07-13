@@ -14,10 +14,10 @@ const routes: Routes = [
     path: 'bookmarks',
     loadChildren: '../pages/bookmarks/bookmarks.module#BookmarksPageModule'
   },
-  {
-    path: 'flashcards',
-    loadChildren: '../pages/flashcards/flashcards.module#FlashcardsPageModule'
-  },
+  // {
+  //   path: 'flashcards',
+  //   loadChildren: '../pages/flashcards/flashcards.module#FlashcardsPageModule'
+  // },
   {
     path: 'random',
     loadChildren: '../pages/random/random.module#RandomPageModule'

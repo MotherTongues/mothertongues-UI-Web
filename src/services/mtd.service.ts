@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Config, DictionaryData } from '../app/models'
 import { HttpClient, HttpResponse } from "@angular/common/http";
@@ -13,8 +13,8 @@ export class MTDService {
     _dictionary_data$ = new BehaviorSubject<DictionaryData[]>(window['dataDict'])
     _config$ = new BehaviorSubject<Config>(window['config'])
     slug: string;
-    remote_data$: any;
-    remote_config$: any;
+    remoteData$: any;
+    remoteConfig$: any;
     base: string = environment.apiBaseURL;
     // remote: string = environment.remoteSlug;
     constructor(private http: HttpClient) {
@@ -23,15 +23,28 @@ export class MTDService {
         this.slug = slugify(this._config$.getValue().L1.name);
         // this.slug = this.remote
         // console.log(this.slug)
-        this.remote_data$ = this.http.get(`https://mtd-fv.herokuapp.com/api/v1/languages?name=${this.slug}&only-data=true`, { observe: 'response' });
-        this.remote_config$ = this.http.get(`https://mtd-fv.herokuapp.com/api/v1/languages?name=${this.slug}&only-config=true`, { observe: 'response' });
+        if (environment.remoteData) {
+            this.remoteData$ = this.http.get(`${environment.remoteData}?name=${this.slug}&only-data=true`,
+                { observe: 'response' });
+        } else {
+            this.remoteData$ = of(false);
+        }
+
+        if (environment.remoteConfig) {
+            this.remoteConfig$ = this.http.get(`${environment.remoteConfig}?name=${this.slug}&only-config=true`,
+                { observe: 'response' });
+        } else {
+            this.remoteConfig$ = of(false);
+        }
+
+
         // TODO: if in storage
-        if (false) {
+        if (environment.remoteData && environment.remoteConfig) {
             // TODO: check remote build is newer
-            this.remote_config$.subscribe(x => {
+            this.remoteConfig$.subscribe(x => {
                 if (x.status === 200) { // TODO: and storage.config.build < x.build
                     this._config$.next(x.body)
-                    this.remote_data$.subscribe(x => {
+                    this.remoteData$.subscribe(x => {
                         if (x.status === 200) {
                             this.presentUpdateAlert()
                             // setTimeout(() => {
@@ -49,10 +62,10 @@ export class MTDService {
             })
         } else {
             // TODO: try and update from remote
-            this.remote_config$.subscribe(x => {
+            this.remoteConfig$.subscribe(x => {
                 if (x.status === 200) {
                     this._config$.next(x.body)
-                    this.remote_data$.subscribe(x => {
+                    this.remoteData$.subscribe(x => {
                         if (x.status === 200) {
                             this._dictionary_data$.next(x.body)
                         } else {
@@ -91,13 +104,14 @@ export class MTDService {
 
     private shuffle(array) {
         var tmp, current, top = array.length;
-        if (top)
+        if (top) {
             while (--top) {
                 current = Math.floor(Math.random() * (top + 1));
                 tmp = array[current];
                 array[current] = array[top];
                 array[top] = tmp;
             }
+        }
         return array;
     }
 
@@ -136,11 +150,11 @@ export class MTDService {
     }
 
     get config_value() {
-        return this._config$.getValue()
+        return this._config$.getValue();
     }
 
     get dataDict_value() {
-        return this._dictionary_data$.getValue()
+        return this._dictionary_data$.getValue();
     }
 
     get categories$(): Observable<object> {

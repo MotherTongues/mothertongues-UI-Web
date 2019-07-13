@@ -22,7 +22,9 @@ export interface DictionaryData {
     firstWordIndex?: number;
     compare_form: string;
     sorting_form: number[];
+    distance?: number;
     entryID?: string,
+    favourited?: boolean,
     optional?: object[],
     theme?: string,
     secondary_theme?: string,

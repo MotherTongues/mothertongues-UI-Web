@@ -2,7 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
 import { DictionaryData } from './models';
 import { BookmarkService, MTDService } from '../services';
-import { Search } from '../pages';
+import { SearchComponent } from '../pages';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { SettingsDialog, SettingsDialogData } from '../pages/shared/settings.component'
 
@@ -12,7 +12,7 @@ import { SettingsDialog, SettingsDialogData } from '../pages/shared/settings.com
 })
 export class MTDApp {
   bookmarks: DictionaryData[];
-  rootPage: any = Search;
+  rootPage: any = SearchComponent;
   settings: SettingsDialogData = { name: 'bloop' };
   public appPages: Array<{ title: string, icon?: any, url: string }> = [
     { title: "Home", url: '/' },
@@ -26,18 +26,6 @@ export class MTDApp {
 
   constructor(private router: Router, private bookmarkService: BookmarkService, public dialog: MatDialog, private mtdService: MTDService) {
 
-    this.mtdService.config$.subscribe((x) => {
-      // console.log('pre-ready updated')
-    })
-
-    this.mtdService.config$.subscribe((x) => {
-      // console.log('post-ready updated')
-    })
-
-    // this.storage.ready().then(() => {
-    this.mtdService.config$.subscribe((x) => {
-      // console.log('storage ready updated')
-    })
     this.mtdService.config$.subscribe((config) => {
 
       let language_name = config.L1.name
@@ -60,9 +48,9 @@ export class MTDApp {
               }
             }
           }
-          this.bookmarkService.setBookmarks(favs)
+          this.bookmarkService.setBookmarks(favs);
         }
-        console.log(this.bookmarkService.bookmarks.value)
+        console.log(this.bookmarkService.bookmarks.value);
       })
 
 
@@ -89,7 +77,7 @@ export class MTDApp {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     // this.nav.setRoot(page.component);
-    this.router.navigate(page.component)
+    this.router.navigate(page.component);
   }
 
   // isiPad() {

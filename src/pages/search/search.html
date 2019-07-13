@@ -2,30 +2,38 @@
   <mat-form-field class='search__bar'>
     <input *ngIf='entries$ | async as entries' autocomplete="off" type="text"
       placeholder="Type a word here to search {{ entries.length }} {{ language$ | async }} words." aria-label="Number"
-      matInput [formControl]="searchControl">
+      matInput (keyup)="onSearchKeyUp($event)">
   </mat-form-field>
   <!-- <ion-searchbar [formControl]="searchControl" autocapitalize="none"></ion-searchbar> -->
-  <div class='search__results' *ngIf="(searchQuery$ | async)?.length > 1">
-    <div class='search__results--matches' *ngIf="matches$ | async as matches">
-      <div class="search__results__container" *ngIf="matches?.length > 0">
-        <h4 class='search__results__title'>Matches</h4>
-        <entry-list [entries]="matches" [searchTerm]="searchQuery$ | async" [shouldHighlight]='true'></entry-list>
+  <div *ngIf='(searchQuery$ | async) && results$ | async as results'>
+    <div class='search__results'>
+      <div class='search__results--matches' *ngIf="filterMatches(results).length > 0">
+        <div class="search__results__container">
+          <h4 class='search__results__title'>Matches</h4>
+          <entry-list [entries]="filterMatches(results)" [searchTerm]="searchQuery$ | async" [shouldHighlight]='true'>
+          </entry-list>
+        </div>
+      </div>
+      <div class='search__results--partMatches' *ngIf="filterPartMatches(results).length > 0">
+        <div class="search__results__container">
+          <h4 class='search__results__title'>Partial Matches</h4>
+          <entry-list [entries]="filterPartMatches(results)" [searchTerm]="searchQuery$ | async"
+            [shouldHighlight]='true'></entry-list>
+        </div>
+      </div>
+      <div class='search__results--maybeMatches' *ngIf="filterMaybeMatches(results).length > 0">
+        <div class="search__results__container">
+          <h4 class='search__results__title'>Maybe you meant this?</h4>
+          <entry-list [entries]="filterMaybeMatches(results)" [searchTerm]="searchQuery$ | async"
+            [shouldHighlight]='true'>
+          </entry-list>
+        </div>
+      </div>
+      <div *ngIf='results.length === 0 && (searchQuery$ | async)'
+        class='search_results--none search__results__container'>
+        <h6>Sorry, we couldn't find any words that match '{{ searchQuery$ | async }}'. Please try something else.</h6>
       </div>
     </div>
-    <div class='search__results--partMatches' *ngIf="partMatches$ | async as partMatches">
-      <div class="search__results__container" *ngIf="partMatches?.length > 0">
-        <h4 class='search__results__title'>Partial Matches</h4>
-        <entry-list [entries]="partMatches" [searchTerm]="searchQuery$ | async" [shouldHighlight]='true'></entry-list>
-      </div>
-    </div>
-    <div class='search__results--maybeMatches' *ngIf="maybeMatches$ | async as maybeMatches">
-      <div class="search__results__container" *ngIf="maybeMatches?.length > 0">
-        <h4 class='search__results__title'>Maybe you meant this?</h4>
-        <entry-list [entries]="maybeMatches" [searchTerm]="searchQuery$ | async" [shouldHighlight]='true'></entry-list>
-      </div>
-    </div>
-    <div class='search__results--none' class="search__results__container" *ngIf="(results$ | async)?.length === 0">
-      <h6>Sorry, we couldn't find any words matching '{{ (searchQuery$ | async) }}'. Please try something else.</h6>
-    </div>
+
   </div>
 </div>
