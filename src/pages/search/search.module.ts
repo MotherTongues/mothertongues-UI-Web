@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatInputModule, MatFormFieldModule, } from '@angular/material'
+import { MatInputModule, MatFormFieldModule, MatIconModule, MatIcon } from '@angular/material'
 
 import { SearchComponent } from './search';
 import { EntryListModule } from '../shared/entry-list.module';
@@ -11,6 +11,7 @@ import { EntryListModule } from '../shared/entry-list.module';
   imports: [
     MatFormFieldModule,
     MatInputModule,
+    MatIconModule,
     CommonModule,
     FormsModule,
     EntryListModule,

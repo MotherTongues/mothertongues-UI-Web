@@ -1,5 +1,6 @@
 <div class='page__content page__content--center'>
   <mat-form-field class='search__bar'>
+      <mat-icon [inline]="true" matPrefix class='search__icon'>search</mat-icon>
     <input *ngIf='entries$ | async as entries' autocomplete="off" type="text"
       placeholder="Type a word here to search {{ entries.length }} {{ language$ | async }} words." aria-label="Number"
       matInput (keyup)="onSearchKeyUp($event)">

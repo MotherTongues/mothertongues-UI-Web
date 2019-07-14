@@ -1,4 +1,11 @@
 .search {
+    &__icon {
+        font-size: small;
+        top: em(5);
+        right: 0;
+        margin-right: em(5);
+    }
+
     &__bar {
         margin: 0 auto;
         width: em(500);
