@@ -52,6 +52,16 @@ export class Browse {
     this.letterInit()
   }
 
+  letterNeverStarts(letter) {
+    return this.displayLetters$.pipe(
+      map((letters) => letters.indexOf(letter) === -1)
+    );
+  }
+
+  highlightLetter(letter) {
+    return this.letters.indexOf(letter) === this.currentX[0].sorting_form[0];
+  }
+
   // Determine whether letter occurs word-initially
   letterInit() {
     this.letters = this.mtdService.config_value.L1.lettersInLanguage;

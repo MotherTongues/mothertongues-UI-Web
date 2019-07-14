@@ -14,7 +14,7 @@
       </div>
       <div class='browse__alphabet__container'>
         <ul class='browse__alphabet__grid'>
-          <li class='browse__alphabet__letter' [class.chosen]='i === currentX[0]["sorting_form"][0]' *ngFor="let letter of letters; let i = index">
+          <li class='browse__alphabet__letter' [class.chosen]='highlightLetter(letter)' *ngFor="let letter of displayLetters$ | async">
             <button mat-button (click)='scrollTo(letter)'>{{letter}}</button>
           </li>
         </ul>
@@ -34,7 +34,7 @@
             <mat-icon class='browse__nav--left--icon'>navigate_before</mat-icon>
           </button>
           <p class='browse__entries--progress'>showing entries {{ (startIndex$ | async) + 1 }} to
-            {{ (startIndex$ | async) + 1 + currentX.length }}
+            {{ (startIndex$ | async) + currentX.length }}
             of {{ (currentEntries$ | async )?.length }} </p>
           <button class='browse__nav browse__nav--right color-white browse__nav--web' color='accent' mat-flat-button
             aria-label="See following entries" (click)="nextX()">
