@@ -4,16 +4,16 @@ export interface Config {
         name: string
         lettersInLanguage: string[],
         compare?: string,
-    },
+    };
     L2: {
         name: string,
-    },
-    build: string,
+    };
+    build: string;
     // optional_field_name?: string,
     // credits?: object[],
-    // audio_path?: string,
-    // img_path?: string,
-    adhoc_vars?: object[]
+    audio_path?: string;
+    img_path?: string;
+    adhoc_vars?: object[];
 }
 
 export interface DictionaryData {

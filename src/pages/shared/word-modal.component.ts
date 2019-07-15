@@ -1,34 +1,28 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { DictionaryData } from '../../app/models'
 import { BookmarkService, MTDService } from '../../services';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { FileNotFoundDialog } from './file-not-found.component';
 
 @Component({
-  selector: 'word-modal',
-  templateUrl: 'word-modal.component.html'
+  selector: 'word-modal-component',
+  templateUrl: 'word-modal.component.html',
 })
-
-
 export class WordModal {
   checkedOptions: string[];
-  displayImages: boolean = true; //default show images, turns to false on 404
-  entry: DictionaryData
-  optional: boolean = false;
+  displayImages = true; //default show images, turns to false on 404
+  entry: DictionaryData;
+  optional = false;
   optionalSelection: string[];
   objectKeys = Object.keys;
   image: string;
-  default_sentence_i: number = 0;
-  audio_playing = [];
-  audio_path: string;
-  constructor(public bookmarkService: BookmarkService,
-    private mtdService: MTDService) {
-    // this.audio_path = this.mtdService.config_value.audio_path
-    // this.entry = navParams.get('entry');
-    // if (this.entry.optional) {
-    //   this.optionalSelection = this.entry.optional.map(x => Object.keys(x))[0]
-    // }
+
+  constructor(public bookmarkService: BookmarkService, private mtdService: MTDService, public dialogRef: MatDialogRef<WordModal>,
+    @Inject(MAT_DIALOG_DATA) public data, public dialog: MatDialog, ) {
+
     console.log(this.optionalSelection)
-    this.checkedOptions = this.optionalSelection
-    console.log(this.checkedOptions)
+    this.checkedOptions = this.optionalSelection;
+
     try {
       this.image = 'assets/img/' + this.entry.img;
     } catch (error) {
@@ -36,73 +30,8 @@ export class WordModal {
     }
   }
 
-  dismiss() {
-    // this.modalCtrl.dismiss()
-  }
-
-  async showAlert() {
-    console.log('show alert')
-    // let alert = await this.alertCtrl.create({
-    //   header: 'Sorry',
-    //   subHeader: 'There is no audio for this yet.',
-    //   buttons: ['Dismiss']
-    // });
-    // await alert.present();
-  };
-
-  async showExpAlert() {
-
-    console.log('show alert')
-    // let alert = await this.alertCtrl.create({
-    //   header: 'Sorry',
-    //   subHeader: 'There is no audio for this yet. Are you sure you are connected to the internet?',
-    //   buttons: ['Dismiss']
-    // });
-    // await alert.present();
-  };
-
-  async showOptions() {
-
-    // Object with options used to create the alert
-    let options = {
-      title: 'Optional fields',
-      message: 'Choose which optional fields to display',
-      inputs: [],
-      buttons: [
-        {
-          text: 'Cancel',
-          role: 'cancel',
-          handler: () => {
-            console.log('Cancel clicked');
-          }
-        },
-        {
-          text: 'Ok',
-          handler: data => {
-            let checkedOptions = []
-            for (let item of data) {
-              for (let key of this.optionalSelection) {
-                if (key === item) {
-                  checkedOptions.push(key)
-                }
-              }
-            }
-            this.checkedOptions = checkedOptions
-          }
-        }
-      ]
-    };
-
-
-    // Now we add the radio buttons
-    for (let option of this.optionalSelection) {
-      options.inputs.push({ name: 'options', value: option, label: option, type: 'checkbox', checked: this.checkChecked(option) });
-    }
-
-    console.log('show alert')
-    // let alert = await this.alertCtrl.create(options);
-    // await alert.present();
-
+  close(): void {
+    this.dialogRef.close();
   }
 
   checkChecked(option) {
@@ -112,6 +41,20 @@ export class WordModal {
     } else {
       return false;
     }
+  }
+
+  fileNotFound(path) {
+    const dialogRef = this.dialog.open(FileNotFoundDialog, {
+      width: '250px',
+      data: { path }
+    });
+  }
+
+  playAudio(fn) {
+    const path = this.mtdService.config_value.audio_path + fn;
+    const audio = new Audio(path);
+    audio.onerror = () => this.fileNotFound(path);
+    audio.play();
   }
 
   imageError() {

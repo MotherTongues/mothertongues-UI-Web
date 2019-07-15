@@ -50,3 +50,13 @@
 
     }
 }
+
+.entry {
+    &__audio {
+        &__button {
+            color: map-deep-get($ui-colors, accent, color);
+        }
+        &__container {
+        }
+    }
+}

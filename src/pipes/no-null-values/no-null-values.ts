@@ -13,8 +13,8 @@ export class NoNullValuesPipe implements PipeTransform {
    * Removes empty strings from array
    */
   transform(value: Array<string>, ...args) {
-    if (value){
-      return value.filter(x => x !== null && x !== '')
+    if (value) {
+      return value.filter(x => x !== null && x !== '');
     }
   }
 }
@@ -27,16 +27,16 @@ export class NoNullObjectValuesPipe implements PipeTransform {
    * Removes empty objects from array
    */
   transform(value: Array<object>, ...args) {
-    if (value){
+    if (value) {
       return value.filter(x => {
-        let not_empty = true;
+        let notEmpty = true;
         Object.keys(x).forEach(k => {
-          if (x[k] === null) {
-            not_empty = false; return not_empty
+          if (!x[k]) {
+            notEmpty = false; return notEmpty;
           }
-        })
-        return not_empty
-      })
+        });
+        return notEmpty;
+      });
     }
   }
 }

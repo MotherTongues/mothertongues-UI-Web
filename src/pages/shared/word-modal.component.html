@@ -1,90 +1,32 @@
-<h1>Word Info</h1>
-
-<!-- <ion-content>
-  <ion-card>
-    <div *ngIf="displayImages">
-      <img [(src)]="entry.img" onError="this.src='/static/assets/img/default.png'" *ngIf="entry.img" />
-    </div>
-    <ion-card-content>
-      <ion-card-title>
-        {{entry.word}}
-      </ion-card-title>
-      <p class="definition">
-        {{entry.definition}}
-      </p>
-      <div *ngIf="entry.optional && optional">
-        <div class="option" *ngFor="let optional_dict of entry.optional; let i = index">
-          <p *ngFor="let option of objectKeys(optional_dict)">
-            <span *ngIf="checkChecked(option)">{{ option }} - {{ entry.optional[i][option]}} </span>
-          </p>
-        </div>
+<!-- <h4 class='center-text' mat-dialog-title>Information for {{ data.entry.word }}</h4> -->
+<div mat-dialog-content>
+  <div class='container'>
+    <div class='container__row'>
+      <div class='container__col centered'>
+        <h2><span>{{ data.entry.word }}</span> - <span>{{ data.entry.definition }}</span></h2>
       </div>
-    </ion-card-content>
-
-    <ion-row *ngIf="(entry.audio | noNullObjectValues)?.length > 0">
-      <ion-card>
-        <ion-card-header>
-          Audio
-        </ion-card-header>
-
-        <ion-list>
-          <ion-item button *ngIf="audio_playing?.length > 0" (click)="stopAllAudio()">
-            <ion-label>Stop all audio</ion-label>
-            <ion-icon name="hand" item-start src='/static/assets/svg/md-hand.svg'></ion-icon>
-          </ion-item>
-          <ion-item button *ngFor="let track of (entry.audio | noNullObjectValues)" (click)="playAudio(track)">
-            <ion-label>
-              <ion-icon name="musical-notes" item-start src='/static/assets/svg/md-musical-notes.svg'></ion-icon>
-              <span *ngIf="track.speaker">Speaker: {{ track.speaker }}</span>
-            </ion-label>
-          </ion-item>
-        </ion-list>
-      </ion-card>
-
-    </ion-row>
-
-    <ion-row *ngIf="(entry.example_sentence | noNullValues)?.length > 0">
-      <ion-card>
-        <ion-card-header>
-          Sentences
-        </ion-card-header>
-
-        <ion-list *ngFor="let sentence of (entry.example_sentence | noNullValues); let i = index">
-
-          <ion-item button *ngFor="let track of (entry.example_sentence_audio[i] | noNullObjectValues)"
-            (click)="playAudio(track)">
-            <ion-label>
-              <ion-icon name="musical-notes" item-start src='/static/assets/svg/md-musical-notes.svg'></ion-icon>
-              <h2>{{ sentence }}</h2>
-              <h4>{{ entry.example_sentence_definition[i] }}</h4>
-              <h6 *ngIf="track.speaker">Speaker: {{ track.speaker }}</h6>
-            </ion-label>
-          </ion-item>
-
-        </ion-list>
-      </ion-card>
-
-    </ion-row>
-
-    <ion-row no-padding>
-      <ion-col>
-        <ion-buttons>
-          <ion-button (click)="toggleFav(entry)">
-            <ion-icon *ngIf="!favourited(entry)" slot="icon-only" name="bookmarks" src='/static/assets/svg/md-bookmarks.svg'></ion-icon>
-            <ion-icon *ngIf="favourited(entry)" [style.color]="'#EF3B51'" slot="icon-only" name="bookmarks" src='/static/assets/svg/md-bookmarks.svg'></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-col>
-    </ion-row>
-
-  </ion-card>
-</ion-content>
-
-<ion-footer *ngIf="entry.optional">
-  <ion-toolbar>
-    <ion-item>
-      <ion-toggle checked="false" [(ngModel)]="optional"></ion-toggle>
-      <ion-label (click)="showOptions()">Show optional information</ion-label>
-    </ion-item>
-  </ion-toolbar>
-</ion-footer> -->
+    </div>
+    <div class="container__row" *ngIf="data.entry.optional">
+      <span *ngFor='let opt of data.entry.optional | noNullObjectValues'>{{ Object.keys(opt)[0] }}:
+        {{ Object.values(opt)[0] }}</span>
+    </div>
+  </div>
+  <div class='container audio__container' *ngIf='data.entry.audio | noNullObjectValues'>
+    <div class="container__row audio__header">
+      <h3 class='container__col audio__header'>Audio</h3>
+    </div>
+    <div class='container__row audio__desc'>
+      <p class='container__col audio__desc'>Click on the audio below to listen to '{{ data.entry.word }}'</p>
+    </div>
+    <div class='container__row audio__buttons'>
+      <div *ngFor="let audio of data.entry.audio | noNullObjectValues" class='container__col centered'>
+        <button class='audio__button' mat-raised-button (click)="playAudio(audio.filename)">
+          {{ audio.speaker }} <mat-icon class='audio__icon'>audiotrack</mat-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class='center-text'>
+  <button mat-raised-button cdkFocusInitial (click)='close()'>Go Back</button>
+</div>
