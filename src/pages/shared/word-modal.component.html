@@ -7,8 +7,10 @@
       </div>
     </div>
     <div class="container__row" *ngIf="data.entry.optional">
-      <span *ngFor='let opt of data.entry.optional | noNullObjectValues'>{{ getKey(opt) }}:
-        {{ getVal(opt) }}</span>
+      <div class='container__col centered'>
+        <span *ngFor='let opt of data.entry.optional | noNullObjectValues'>{{ getKey(opt) }}:
+          {{ getVal(opt) }}</span>
+      </div>
     </div>
   </div>
   <div class='container audio__container' *ngIf='hasAudio()'>
