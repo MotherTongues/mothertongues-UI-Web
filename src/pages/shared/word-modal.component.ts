@@ -35,6 +35,14 @@ export class WordModal {
     this.dialogRef.close();
   }
 
+  getKey(obj) {
+    return Object.keys(obj);
+  }
+
+  getVal(obj) {
+    return Object.values(obj);
+  }
+
   checkChecked(option) {
     console.log(option)
     if (this.checkedOptions.indexOf(option) >= 0) {
