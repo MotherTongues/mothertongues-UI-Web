@@ -3,6 +3,7 @@ import { DictionaryData } from '../../app/models'
 import { BookmarkService, MTDService } from '../../services';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { FileNotFoundDialog } from './file-not-found.component';
+import { analyzeAndValidateNgModules } from '@angular/compiler';
 
 @Component({
   selector: 'word-modal-component',
@@ -41,6 +42,19 @@ export class WordModal {
     } else {
       return false;
     }
+  }
+
+  hasAudio() {
+    const audio = this.data.entry.audio.filter(x => {
+      let notEmpty = true;
+      Object.keys(x).forEach(k => {
+        if (!x[k]) {
+          notEmpty = false; return notEmpty;
+        }
+      });
+      return notEmpty;
+    });
+    return audio.length > 0;
   }
 
   fileNotFound(path) {

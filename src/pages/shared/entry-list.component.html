@@ -32,25 +32,6 @@
       <div class="container__col--1">
       </div>
     </div>
-    <!-- <div class="container__row" *ngIf="entry.optional">
-      <span *ngFor='let opt of entry.optional | noNullObjectValues'>{{ Object.keys(opt)[0] }}:
-        {{ Object.values(opt)[0] }}</span>
-    </div>
-    <div class="container__row">
-      <div class="container__col--1"></div>
-      <div class='entry__audio__container container__col--10'>
-        <mat-form-field>
-          <mat-label>Select Audio</mat-label>
-          <mat-select (selectionChange)="selectAudio($event.value)">
-            <mat-option *ngFor="let audio of entry.audio | noNullObjectValues" [value]='audio'>
-              {{audio.speaker}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-      </div>
-      <div class="container__col--1"></div>
-    </div> -->
     <hr *ngIf="!isLast">
   </div>
 </div>

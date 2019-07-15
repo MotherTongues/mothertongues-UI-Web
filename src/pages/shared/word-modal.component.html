@@ -11,7 +11,7 @@
         {{ Object.values(opt)[0] }}</span>
     </div>
   </div>
-  <div class='container audio__container' *ngIf='data.entry.audio | noNullObjectValues'>
+  <div class='container audio__container' *ngIf='hasAudio()'>
     <div class="container__row audio__header">
       <h3 class='container__col audio__header'>Audio</h3>
     </div>
