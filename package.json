@@ -5,7 +5,7 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build-demo": "ng build --outputPath=docs",
+    "build-demo": "ng build --baseHref=/mothertongues-UI-Web/ --outputPath=docs",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
