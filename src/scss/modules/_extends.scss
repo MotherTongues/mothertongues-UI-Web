@@ -48,3 +48,12 @@
     background: rgba(map-deep-get($ui-colors, accent, contrast), .5);
     border-radius: em(5);
 }
+
+%contrast-container {
+    background: map-deep-get($ui-colors, primary, contrast);
+    width: 50%;
+    margin: em(40) auto;
+    padding: em(5);
+    border-radius: em(5);
+    max-width: em(550);
+}

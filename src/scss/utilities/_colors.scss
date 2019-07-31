@@ -27,8 +27,8 @@ $seance:                    #6a1b9a; //500 of md-purple
 
 // main color palette
 // =============
-$color-primary:             map-get($md-primary, 500);
-$color-accent:              map-get($md-accent, 400);
+$color-primary:             map-get($md-primary, A100);
+$color-accent:              map-get($md-accent, 500);
 $color-shadow:              rgba($black, .125);
 $color-note:                #666;
 

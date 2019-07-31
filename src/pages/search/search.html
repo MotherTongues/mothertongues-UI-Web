@@ -1,10 +1,12 @@
 <div class='page__content page__content--center'>
-  <mat-form-field class='search__bar'>
+  <div class='search__bar__container'>
+    <mat-form-field class='search__bar'>
       <mat-icon [inline]="true" matPrefix class='search__icon'>search</mat-icon>
-    <input *ngIf='entries$ | async as entries' autocomplete="off" type="text"
-      placeholder="Type a word here to search {{ entries.length }} {{ language$ | async }} words." aria-label="Number"
-      matInput (keyup)="onSearchKeyUp($event)">
-  </mat-form-field>
+      <input *ngIf='entries$ | async as entries' autocomplete="off" type="text"
+        placeholder="Type a word here to search {{ entries.length }} {{ language$ | async }} words." aria-label="Number"
+        matInput (keyup)="onSearchKeyUp($event)">
+    </mat-form-field>
+  </div>
   <!-- <ion-searchbar [formControl]="searchControl" autocapitalize="none"></ion-searchbar> -->
   <div *ngIf='(searchQuery$ | async) && results$ | async as results'>
     <div class='search__results'>

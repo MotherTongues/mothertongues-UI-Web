@@ -3,8 +3,12 @@
     color: map-deep-get($ui-colors, accent, contrast);
 }
 
+
+
 .browse {
-    &__categories {}
+    &__categories {
+        @extend %contrast-container
+    }
 
     &__controls {
         &__container {}
@@ -43,6 +47,7 @@
         max-height: 650px;
         min-height: 650px;
         overflow-y: auto;
+
         &--progress {
             margin: 0 auto !important;
             font-size: smaller;
