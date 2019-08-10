@@ -41,6 +41,8 @@
 }
 
 %results {
+    max-height: 45vh;
+    overflow-y: auto;
     width: 70%;
     max-width: em(850);
     margin: 5vh auto;
