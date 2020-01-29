@@ -41,19 +41,19 @@
         }
     }
 
-    &__entries {
+    &__entries { 
         @extend %results;
-        height: auto;
-        max-height: 650px;
-        min-height: 650px;
-        overflow-y: auto;
+        max-height: 100vh;
+        overflow-y: none;
 
         &--progress {
             margin: 0 auto !important;
             font-size: smaller;
         }
 
-        &__container {}
+        &__container {
+           max-height: 10vh;
+        }
     }
 
     &__toolbar {}

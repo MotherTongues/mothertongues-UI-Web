@@ -145,8 +145,9 @@ table {
     max-height: 100%;
     max-width: 100%;
     background-size: cover;
-
     &__container {
+        overflow-y: auto;
         position: relative;
+        min-height: 100vh;
     }
 }
