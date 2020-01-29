@@ -46,6 +46,7 @@
     width: 70%;
     max-width: em(850);
     margin: 5vh auto;
+    margin-bottom: em(150);
     border: em(2) solid rgba(map-deep-get($ui-colors, accent, color), .5);
     background: rgba(map-deep-get($ui-colors, accent, contrast), .5);
     border-radius: em(5);
