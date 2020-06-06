@@ -17,7 +17,7 @@ import { FileNotFoundDialog } from './file-not-found.component'
 export class EntryList implements OnChanges {
   pageName: string;
   edit: boolean = false;
-
+  audioPlaying = []
   @Input() parentEdit: boolean;
   @Input() entries: DictionaryData[];
   @Input() searchTerm: string;
@@ -38,11 +38,13 @@ export class EntryList implements OnChanges {
   }
 
   playDefaultAudio(entry) {
+    this.audioPlaying.forEach( (x: HTMLAudioElement) => x.pause());
+    this.audioPlaying = [];
     const defaultAudio = this.mtdService.config_value.audio_path + entry.audio.filter(audioFile => audioFile.filename)[0].filename;
-    console.log(defaultAudio);
     const audio = new Audio(defaultAudio);
     audio.onerror = () => this.fileNotFound(defaultAudio);
     audio.play();
+    this.audioPlaying.push(audio)
   }
 
   fileNotFound(path) {

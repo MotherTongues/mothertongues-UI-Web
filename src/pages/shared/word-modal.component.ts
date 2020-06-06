@@ -17,7 +17,7 @@ export class WordModal {
   optionalSelection: string[];
   objectKeys = Object.keys;
   image: string;
-
+  audioPlaying = []
   constructor(public bookmarkService: BookmarkService, private mtdService: MTDService, public dialogRef: MatDialogRef<WordModal>,
     @Inject(MAT_DIALOG_DATA) public data, public dialog: MatDialog, ) {
 
@@ -31,7 +31,13 @@ export class WordModal {
     }
   }
 
+  stopAllAudio() {
+    this.audioPlaying.forEach((x: HTMLAudioElement) => x.pause());
+    this.audioPlaying = [];
+  }
+
   close(): void {
+    this.stopAllAudio();
     this.dialogRef.close();
   }
 
@@ -73,10 +79,12 @@ export class WordModal {
   }
 
   playAudio(fn) {
+    this.stopAllAudio();
     const path = this.mtdService.config_value.audio_path + fn;
     const audio = new Audio(path);
     audio.onerror = () => this.fileNotFound(path);
     audio.play();
+    this.audioPlaying.push(audio);
   }
 
   imageError() {

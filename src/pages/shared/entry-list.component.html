@@ -10,7 +10,7 @@
         <button mat-icon-button aria-label="Show More information" (click)="showModal(entry)">
           <mat-icon>list</mat-icon>
         </button>
-        <button [disabled]='!entry.audio | noNullObjectValues' mat-icon-button
+        <button [disabled]='(entry.audio | filterNullValues).length === 0' mat-icon-button
           aria-label="Play Audio" (click)='playDefaultAudio(entry)'>
           <mat-icon>audiotrack</mat-icon>
         </button>

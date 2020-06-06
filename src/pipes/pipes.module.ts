@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { NoNullValuesPipe, NoNullObjectValuesPipe } from './no-null-values/no-null-values';
+import { FilterNullValuesPipe, NoNullValuesPipe, NoNullObjectValuesPipe } from './no-null-values/no-null-values';
 @NgModule({
-	declarations: [NoNullObjectValuesPipe, NoNullValuesPipe],
+	declarations: [FilterNullValuesPipe, NoNullObjectValuesPipe, NoNullValuesPipe],
 	imports: [],
-	exports: [NoNullObjectValuesPipe, NoNullValuesPipe]
+	exports: [FilterNullValuesPipe, NoNullObjectValuesPipe, NoNullValuesPipe]
 })
 export class PipesModule {}
