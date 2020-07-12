@@ -33,6 +33,10 @@
     <button class="nav-container__content--mobile" mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon aria-label="Show toolbar">menu</mat-icon>
     </button>
+    <button color='accent' class='' mat-icon-button
+    aria-label="See previous entries">
+    <mat-icon class='browse__nav--left--icon'>navigate_before</mat-icon>
+  </button>
   </nav>
 </div>
 <mat-menu #menu="matMenu">
@@ -40,7 +44,7 @@
   <button mat-menu-item routerLink="browse">Browse</button>
   <button mat-menu-item routerLink="random">Random</button>
   <button mat-menu-item routerLink="flashcards">Flashcards</button>
-  <button mat-menu-item (click)="openSettings()">Settings</button>
+  <!-- <button mat-menu-item (click)="openSettings()">Settings</button> -->
   <button mat-menu-item routerLink="about">About</button>
 </mat-menu>
 <div id='main__container'>
