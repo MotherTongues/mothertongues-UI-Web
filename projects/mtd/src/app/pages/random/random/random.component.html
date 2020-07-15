@@ -1,0 +1,16 @@
+<div class="background">
+    <div class="gradient">
+        <div class='container page__content'>
+            <div class="row">
+                <div class='col-lg-3'></div>
+                <div class="col-lg-6 centered" [ngClass]="routeAnimationsElements">
+                    <button class='accent-contrast' mat-raised-button color="accent" (click)='getRandom()'>{{ 'mtd.pages.random.button' | translate }}</button>
+                </div>
+                <div class='col-lg-3'></div>
+            </div>
+            <div class="results" *ngIf="entries$ | async as entries_val">
+                <mtd-entry-list [entries]="entries_val"></mtd-entry-list>
+            </div>
+        </div>
+    </div>
+</div>

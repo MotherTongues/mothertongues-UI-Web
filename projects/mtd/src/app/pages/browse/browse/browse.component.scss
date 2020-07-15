@@ -1,0 +1,97 @@
+@mixin mq($breakpoint, $query: 'min-width', $type: 'screen') {
+  @media #{$type} and (#{$query}: #{$breakpoint}) {
+    @content;
+  }
+}
+
+.browse {
+  &__categories {
+    text-align: center;
+    padding: 0 20px;
+    border-radius: 5px;
+    width: fit-content;
+    margin: 0 auto;
+  }
+
+  &__alphabet {
+    &__grid {
+      width: 90%;
+      margin: 20px auto;
+      list-style-type: none;
+      padding: 0;
+      overflow: hidden;
+      opacity: 0.95;
+      border-radius: 15px;
+    }
+
+    &__letter {
+      display: block;
+      text-align: center;
+      padding: 5px;
+      text-decoration: none;
+      float: left;
+      cursor: pointer;
+    }
+  }
+
+  &__entries {
+    max-height: 100vh;
+    overflow-y: none;
+
+    &--progress {
+      margin: 0 auto !important;
+      font-size: smaller;
+    }
+
+    &__container {
+      max-height: 10vh;
+    }
+  }
+
+  &__toolbar {
+  }
+
+  &__nav {
+    &--web {
+      @include mq(900px, 'max-width', 'screen') {
+        display: none !important;
+      }
+    }
+
+    &--mobile {
+      @include mq(900px, 'min-width', 'screen') {
+        display: none !important;
+      }
+    }
+
+    &--left {
+      width: 100px;
+
+      &--icon {
+        font-size: xx-large !important;
+        position: absolute !important;
+        left: 0 !important;
+        top: 3px !important;
+      }
+
+      &--text {
+        margin-left: 15px;
+      }
+    }
+
+    &--right {
+      width: 100px;
+
+      &--icon {
+        font-size: xx-large !important;
+        position: absolute !important;
+        right: 5px !important;
+        top: 3px !important;
+      }
+
+      &--text {
+        margin-right: 15px;
+      }
+    }
+  }
+}

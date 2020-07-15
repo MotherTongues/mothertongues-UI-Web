@@ -1,0 +1,16 @@
+@import '~@angular/material/theming';
+
+@mixin mtd-entry-list-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background-palette: map-get($theme, background);
+  $foreground-palette: map-get($theme, foreground);
+
+  .langMatched {
+    background: mat-color($accent);
+    color: mat-color($accent, default-contrast);
+    border-radius: 5px;
+    padding: 2px;
+  }
+}

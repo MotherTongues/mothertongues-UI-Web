@@ -1,8 +1,0 @@
-<div class='page__content page__content--center'>
-
-  <button class='color-white' mat-raised-button color="accent" (click)='getRandom()'>Click here for 10 Random words</button>
-
-  <div class="results" *ngIf="entries$ | async as entries_val">
-    <entry-list [entries]="entries_val"></entry-list>
-  </div>
-</div>

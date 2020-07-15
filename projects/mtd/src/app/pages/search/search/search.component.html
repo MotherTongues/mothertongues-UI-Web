@@ -1,0 +1,48 @@
+<div class="background">
+    <div class="gradient">
+        <div class='page__content page__content--center container'>
+            <div class='search__bar__container' [ngClass]="routeAnimationsElements">
+                <mat-form-field class='search__bar'>
+                    <mat-icon [inline]="true" matPrefix class='search__icon'>search</mat-icon>
+                    <input *ngIf='entries$ | async as entries' autocomplete="off" type="text"
+                        placeholder="Type a word here to search {{ entries.length }} {{ language$ | async }} words."
+                        aria-label="Number" matInput (keyup)="onSearchKeyUp($event)" [(ngModel)]="searchQuery">
+                </mat-form-field>
+            </div>
+            <!-- <ion-searchbar [formControl]="searchControl" autocapitalize="none"></ion-searchbar> -->
+            <div *ngIf='searchQuery && entries'>
+                <div class='search__results'>
+                    <div class='search__results--matches' *ngIf="matches.length > 0">
+                        <div class="search__results__container">
+                            <h4 class='search__results__title'>{{ 'mtd.pages.search.matches' | translate }}</h4>
+                            <mtd-entry-list [entries]="matches" [searchTerm]="searchQuery" [threshold]="matchThreshold"
+                                [shouldHighlight]='true'>
+                            </mtd-entry-list>
+                        </div>
+                    </div>
+                    <div class='search__results--partMatches' *ngIf="partMatches.length > 0">
+                        <div class="search__results__container">
+                            <h4 class='search__results__title'>{{ 'mtd.pages.search.partial-matches' | translate }}</h4>
+                            <mtd-entry-list [entries]="partMatches" [searchTerm]="searchQuery"
+                                [threshold]="partialThreshold" [shouldHighlight]='true'></mtd-entry-list>
+                        </div>
+                    </div>
+                    <div class='search__results--maybeMatches' *ngIf="maybeMatches.length > 0">
+                        <div class="search__results__container">
+                            <h4 class='search__results__title'>{{ 'mtd.pages.search.maybe-matches' | translate }}</h4>
+                            <mtd-entry-list [entries]="maybeMatches" [searchTerm]="searchQuery" [threshold]="maybeThreshold"
+                                [shouldHighlight]='true'>
+                            </mtd-entry-list>
+                        </div>
+                    </div>
+                    <div *ngIf='matches.length === 0 && partMatches.length === 0 && maybeMatches.length === 0 && searchQuery'
+                        class='search__results--none search__results__container'>
+                        <h5 *ngIf="searchQuery">
+                            {{ 'mtd.pages.search.no-results' | translate: {value: searchQuery } }}</h5>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

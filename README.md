@@ -1,6 +1,6 @@
 # Mother Tongues Dictionaries Web UI (MTD-UI-Web)
 
-*This repo is under construction and could change drastically in the coming months with breaking changes.*
+_This repo is under construction and could change drastically in the coming months with breaking changes._
 
 [![license](https://img.shields.io/github/license/roedoejet/mothertongues-UI-Web.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
@@ -38,6 +38,8 @@ PRs accepted. If you would like to create more MTD-UIs those are also accepted.
 MTD-UI has had significant help from a huge number of people including but not limited to Patrick Littell, Mark Turin, & Lisa Matthewson.
 
 As well as institutional support from the [First Peoples' Cultural Council](http://www.fpcc.ca/) and SSHRC Insight Grant 435-2016-1694, ‘Enhancing Lexical Resources for BC First Nations Languages’.
+
+This version of MTD Web UI was built using the _incredible_ [Angular NgRx starter](https://github.com/tomastrajan/angular-ngrx-material-starter) by Tomas Trajan. If you're an Angular developer, go check it out!
 
 ## License
 

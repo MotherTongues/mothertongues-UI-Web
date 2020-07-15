@@ -1,0 +1,33 @@
+.search {
+  &__icon {
+    font-size: small;
+    top: 5px;
+    right: 0;
+    margin-right: 5px;
+  }
+
+  &__bar {
+    &__container {
+      text-align: center;
+      padding: 0 20px;
+      border-radius: 5px;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    margin: 0 auto;
+    width: 500px;
+  }
+
+  &__results {
+    margin: 40px auto;
+    &__title {
+      padding: 20px;
+      text-align: center;
+    }
+    &--none {
+      text-align: center;
+      padding: 10px;
+    }
+  }
+}
