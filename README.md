@@ -43,4 +43,4 @@ This version of MTD Web UI was built using the _incredible_ [Angular NgRx starte
 
 ## License
 
-[MPL-2.0 © Aidan Pine.](LICENSE)
+[MIT © Aidan Pine. Patrick Littell. Tomas Trajan](LICENSE)
