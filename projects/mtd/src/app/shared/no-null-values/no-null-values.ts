@@ -20,7 +20,20 @@ export class NoNullValuesPipe implements PipeTransform {
 }
 
 @Pipe({
-  name: 'noNullObjectValues'
+  name: 'filterNullValues',
+})
+export class FilterNullValuesPipe implements PipeTransform {
+  /**
+   * Removes empty objects from array
+   */
+  transform(value: Array<object>) {
+    const filtered = value.filter((x) => Object.keys(x).every((k) => x[k]));
+    return filtered;
+  }
+}
+
+@Pipe({
+  name: 'noNullObjectValues',
 })
 export class NoNullObjectValuesPipe implements PipeTransform {
   /**
