@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
   envName = env.envName;
   version = env.versions.app;
   year = new Date().getFullYear();
-  logo = '../../assets/logo.svg';
+  logo = 'assets/logo.svg';
   languages = META.languages;
   Meta = META;
   navigation = [
@@ -73,9 +73,9 @@ export class AppComponent implements OnInit {
     }
     this.store.select(selectEffectiveTheme).subscribe(theme => {
       if (theme === 'light-theme') {
-        this.logo = '../../assets/logo-dark.svg';
+        this.logo = 'assets/logo-dark.svg';
       } else {
-        this.logo = '../../assets/logo-light.svg';
+        this.logo = 'assets/logo-light.svg';
       }
     });
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
