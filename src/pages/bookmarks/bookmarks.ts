@@ -14,7 +14,7 @@ export class Bookmarks {
   edit: boolean = false;
 
   constructor(public bookmarkService: BookmarkService) {
-   this.bookmarkService.bookmarks.subscribe((bookmarks)=> { this.bookmarks = bookmarks });
+    this.bookmarkService.bookmarks.subscribe((bookmarks) => { this.bookmarks = bookmarks });
   }
 
   removeEntries(bookmarks) {
