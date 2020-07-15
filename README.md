@@ -2,7 +2,9 @@
 
 _This repo is under construction and could change drastically in the coming months with breaking changes._
 
-[![license](https://img.shields.io/github/license/roedoejet/mothertongues-UI-Web.svg)](LICENSE)
+[![codecov](https://codecov.io/gh/MotherTongues/mothertongues-UI-Web/branch/master/graph/badge.svg)](https://codecov.io/gh/MotherTongues/mothertongues-UI-Web)
+[![Build Status](https://travis-ci.org/MotherTongues/mothertongues-UI-Web.svg?branch=master)](https://travis-ci.org/MotherTongues/mothertongues-UI-Web)
+[![license](https://img.shields.io/github/license/MotherTongues/mothertongues-UI-Web.svg)](LICENSE)
 [![standard-readme compliant](https://img.shields.io/badge/readme%20style-standard-brightgreen.svg?style=flat-square)](https://github.com/RichardLitt/standard-readme)
 
 MTD is the second of two open-source tools that allow language communities and developers to quickly and inexpensively make their dictionary data digitally accessible. MTD-UI is a tool that visualizes dictionary data that is prepared with [MTD](https://github.com/roedoejet/mothertongues). This is the web version.
@@ -43,4 +45,4 @@ This version of MTD Web UI was built using the _incredible_ [Angular NgRx starte
 
 ## License
 
-[MIT © Aidan Pine. Patrick Littell. Tomas Trajan](LICENSE)
+[MIT © Aidan Pine.](LICENSE)
