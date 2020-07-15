@@ -26,7 +26,7 @@ jobs:
         run: npm ci
 
       - name: build
-        run: npm run-script build-prod
+        run: npm run-script build:prod
 
       - name: deploy
         uses: JamesIves/github-pages-deploy-action@3.5.7

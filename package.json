@@ -15,7 +15,7 @@
     "e2e": "ng e2e",
     "e2e:ci": "ng e2e --webdriver-update false",
     "pree2e:ci": "./node_modules/protractor/bin/webdriver-manager clean && ./node_modules/protractor/bin/webdriver-manager update --versions.chrome=62.0.3202",
-    "ci": "npm run format:test && ng lint && ng test --configuration=test --browsers ChromeTravisCi --code-coverage && npm run e2e:ci && npm run build:prod -- --deploy-url /mothertongues-UI-Web/ --base-href /mothertongues-UI-Web",
+    "ci": "npm run format:test && ng lint && ng test --configuration=test --browsers ChromeTravisCi --code-coverage",
     "format:write": "prettier projects/**/*.{ts,json,md,scss} --write",
     "format:test": "prettier projects/**/*.{ts,json,md,scss} --list-different",
     "release": "standard-version && git push --follow-tags origin master",
