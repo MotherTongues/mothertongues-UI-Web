@@ -20,13 +20,14 @@ export class BookmarksService {
     const vals = JSON.parse(
       localStorage.getItem(this.config.L1.name + this.config.build)
     );
-    let bookmarks;
-    for (let i = 0; i < vals.length; i++) {
-      const entry = this.entries.find(x => x['entryID'] === vals[i]);
-      const index = this.bookmarks.value.indexOf(entry);
-      if (index === -1) {
-        entry.favourited = true;
-        this.bookmarks.next(this.bookmarks.value.concat([entry]));
+    if (vals) {
+      for (let i = 0; i < vals.length; i++) {
+        const entry = this.entries.find(x => x['entryID'] === vals[i]);
+        const index = this.bookmarks.value.indexOf(entry);
+        if (index === -1) {
+          entry.favourited = true;
+          this.bookmarks.next(this.bookmarks.value.concat([entry]));
+        }
       }
     }
   }
