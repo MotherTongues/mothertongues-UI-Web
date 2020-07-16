@@ -32,8 +32,9 @@
 
   &__term {
     display: table-cell;
+    text-align: center;
     vertical-align: middle;
-    padding: em(8) 0;
+    padding: 8px 0;
     &__container {
       display: table;
     }

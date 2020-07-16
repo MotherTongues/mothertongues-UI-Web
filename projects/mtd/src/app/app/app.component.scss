@@ -1,5 +1,32 @@
 @import '../../styles-variables';
 
+$breakpoints: (
+  xsmall: null,
+  small: 480px,
+  medium: 768px,
+  // This is usually 768, but it works better with the nav bar at 910, so everything else should follow suit
+    large: 1024px,
+  xlarge: 1280px
+);
+
+@mixin mq($breakpoint, $query: 'min-width', $type: 'screen') {
+  @media #{$type} and (#{$query}: #{$breakpoint}) {
+    @content;
+  }
+}
+
+.desktop-only {
+  @include mq(map-get($breakpoints, medium), 'max-width') {
+    display: none;
+  }
+}
+
+.mobile-only {
+  @include mq(map-get($breakpoints, medium)) {
+    display: none;
+  }
+}
+
 .page__content {
   min-height: calc(100vh - 208px);
 }
@@ -15,11 +42,22 @@
 }
 
 .results,
-.entry-list-container,
-.search__results {
-  max-height: 45vh;
+.entry-list-container {
+  max-height: 53em;
+  height: 60vh;
   overflow-y: auto;
-  width: 70%;
+  // width: 70%;
+  max-width: 53.125em;
+  margin: 5vh auto;
+  margin-bottom: 9.375em;
+  border-radius: 0.3125em;
+}
+
+.search__results {
+  max-height: 53em;
+  // height: 60vh;
+  overflow-y: auto;
+  // width: 70%;
   max-width: 53.125em;
   margin: 5vh auto;
   margin-bottom: 9.375em;

@@ -1,7 +1,7 @@
 <div class='entry-list-container'>
   <div class="container" *ngFor="let entry of entries; last as isLast" text-wrap>
     <div class='row'>
-      <div class='col-lg-3'>
+      <div class='col-sm-3'>
         <button mat-icon-button aria-label="Bookmark entry"
           (click)="entry.favourited = !entry.favourited; toggleBookmark(entry)">
           <mat-icon *ngIf="!entry.favourited">bookmark_border</mat-icon>
@@ -16,20 +16,20 @@
 
       </div>
 
-      <div class="col-lg-4 match__term__container">
+      <div class="col-sm-4 match__term__container">
         <span class='match__term match__term--target' [innerHTML]="highlight(entry, 'L1')"></span>
         <!-- <span class='match__term match__term--target'
             [ngClass]="{'langMatched': entry.type === 'L1' && shouldHighlight}">{{entry.word}}</span> -->
 
       </div>
 
-      <div class="offset-lg-1 col-lg-3 match__term__container" (click)="showModal(entry)">
+      <div class="offset-sm-1 col-sm-3 match__term__container" (click)="showModal(entry)">
         <span class='match__term match__term--translation' [innerHTML]="highlight(entry, 'L2')"></span>
         <!-- <span *ngIf='shouldHighlight' class="match__term match__term--translation"
             [innerHTML]="highlight(entry.definition)"></span>
           <span *ngIf='!shouldHighlight' class="match__term match__term--translation">{{entry.definition}}</span> -->
       </div>
-      <div class="col-lg-1">
+      <div class="col-sm-1">
       </div>
     </div>
     <hr *ngIf="!isLast">

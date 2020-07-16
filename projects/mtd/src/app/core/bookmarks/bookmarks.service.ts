@@ -6,9 +6,29 @@ import { Config, DictionaryData } from '../models';
 @Injectable({ providedIn: 'root' })
 export class BookmarksService {
   public bookmarks = new BehaviorSubject<DictionaryData[]>([]);
+  entries: DictionaryData[];
   config: Config;
   constructor(private mtdService: MtdService) {
     this.config = this.mtdService.config_value;
+    this.mtdService.dataDict$.subscribe(entries => {
+      this.entries = entries;
+      this.loadBookmarks();
+    });
+  }
+
+  loadBookmarks() {
+    const vals = JSON.parse(
+      localStorage.getItem(this.config.L1.name + this.config.build)
+    );
+    let bookmarks;
+    for (let i = 0; i < vals.length; i++) {
+      const entry = this.entries.find(x => x['entryID'] === vals[i]);
+      const index = this.bookmarks.value.indexOf(entry);
+      if (index === -1) {
+        entry.favourited = true;
+        this.bookmarks.next(this.bookmarks.value.concat([entry]));
+      }
+    }
   }
 
   setBookmarks(val) {
