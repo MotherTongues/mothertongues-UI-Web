@@ -8,8 +8,12 @@
   $foreground-palette: map-get($theme, foreground);
 
   .slogan {
+    color: mat-color($foreground-palette, foreground);
     &__container {
       background: mat-color($background-palette, background);
     }
+  }
+  .sub-slogan {
+    color: mat-color($foreground-palette, foreground);
   }
 }

@@ -4,7 +4,7 @@
             <div class='slogan__container' [ngClass]="routeAnimationsElements">
                 <h3 class='slogan'>{{ 'mtd.pages.home.slogan' | translate: { value: (mtdService.config$ | async)?.L1.name } }}</h3>
                 <div>
-                    <p>{{ 'mtd.pages.home.sub-slogan' | translate }}</p>
+                    <p class='sub-slogan'>{{ 'mtd.pages.home.sub-slogan' | translate }}</p>
                 </div>
             </div>
         </div>
