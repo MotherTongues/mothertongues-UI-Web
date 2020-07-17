@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { DictionaryData } from '../../../core/models';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { META } from '../../../../config/config';
 import {
   BookmarksService,
   MtdService,
@@ -48,7 +49,6 @@ export class BrowseComponent implements OnInit {
     this.currentEntries$
       .pipe(map(entries => this.getXFrom(this.startIndex$.value, entries)))
       .subscribe(entries => (this.currentX = entries));
-
     this.startIndex$
       .pipe(map(i => this.getXFrom(i, this.currentEntries$.getValue())))
       .subscribe(entries => (this.currentX = entries));

@@ -5,6 +5,7 @@ import { Config, DictionaryData } from '../models';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { uniq } from 'lodash';
 import { environment } from '../../../environments/environment';
+import { META } from '../../../config/config';
 // import { AlertController } from '@ionic/angular';
 
 @Injectable({ providedIn: 'root' })
@@ -197,10 +198,9 @@ export class MtdService {
         }
 
         const audioEntries = entries.filter(x => x.audio);
-
         if (
           audioEntries.length > 0 &&
-          audioEntries.length < entries.length * 0.5
+          (audioEntries.length < entries.length * 0.75 || META.browseAudio)
         ) {
           categories['audio'] = {};
           categories['audio'] = audioEntries;

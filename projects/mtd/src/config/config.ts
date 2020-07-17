@@ -13,6 +13,7 @@ export interface Link {
 }
 
 export interface Meta {
+  browseAudio: boolean;
   contributors: Contributor[];
   languages: Language[];
   links: {
@@ -28,6 +29,7 @@ export interface Meta {
 }
 
 export const META: Meta = {
+  browseAudio: true,
   contributors: [
     {
       name: 'Aidan Pine',
