@@ -37,6 +37,7 @@ const STEPS_ALL: any[] = [
         style({
           transform: 'translateY(-3%)',
           opacity: 0,
+          overflow: 'hidden',
           position: 'static'
         }),
         animate(
