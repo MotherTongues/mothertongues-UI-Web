@@ -20,6 +20,7 @@
 @import './app/pages/browse/browse/browse.component.scss-theme.scss';
 @import './app/pages/search/search/search.component.scss-theme.scss';
 @import './app/shared/entry-list/entry-list.component.scss-theme.scss';
+@import './app/pages/home/home/home.component.scss-theme';
 
 @mixin custom-components-theme($theme) {
   @include mtd-styles-reset-theme($theme);
@@ -29,6 +30,7 @@
   @include mtd-browse-component-theme($theme);
   @include mtd-search-component-theme($theme);
   @include mtd-entry-list-component-theme($theme);
+  @include mtd-home-component-theme($theme);
 }
 
 .default-theme {

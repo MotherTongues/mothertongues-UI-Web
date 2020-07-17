@@ -1,0 +1,15 @@
+@import '~@angular/material/theming';
+
+@mixin mtd-home-component-theme($theme) {
+  $primary: map-get($theme, primary);
+  $accent: map-get($theme, accent);
+  $warn: map-get($theme, warn);
+  $background-palette: map-get($theme, background);
+  $foreground-palette: map-get($theme, foreground);
+
+  .slogan {
+    &__container {
+      background: mat-color($background-palette, background);
+    }
+  }
+}
