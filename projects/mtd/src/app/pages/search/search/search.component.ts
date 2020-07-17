@@ -1,15 +1,11 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { concat, Observable, BehaviorSubject, of } from 'rxjs';
 import {
-  catchError,
-  debounceTime,
-  distinctUntilChanged,
-  filter,
-  map,
-  switchMap,
-  tap,
-  every
-} from 'rxjs/operators';
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { FormControl } from '@angular/forms';
 import { DictionaryData } from '../../../core/models';
 import {
@@ -29,7 +25,7 @@ import { slugify } from 'transliteration';
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchComponent implements OnInit {
+export class SearchComponent implements OnDestroy, OnInit {
   entries: DictionaryData[];
   entries$: Observable<DictionaryData[]>;
   matches: DictionaryData[] = [];
@@ -44,14 +40,21 @@ export class SearchComponent implements OnInit {
   placeholder = 'Type a word here';
   language$: Observable<string>;
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+  unsubscribe$ = new Subject<void>();
   constructor(private mtdService: MtdService) {
     this.entries$ = this.mtdService.dataDict$;
     this.searchControl = new FormControl();
     this.language$ = this.mtdService.name$;
   }
 
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+  }
+
   ngOnInit(): void {
-    this.entries$.subscribe(entries => (this.entries = entries));
+    this.entries$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(entries => (this.entries = entries));
     // this.results$ = this.searchQuery$.pipe(
     //   distinctUntilChanged(),
     //   debounceTime(100),

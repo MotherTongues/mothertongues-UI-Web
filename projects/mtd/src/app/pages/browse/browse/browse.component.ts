@@ -1,7 +1,12 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import {
+  Component,
+  OnDestroy,
+  OnInit,
+  ChangeDetectionStrategy
+} from '@angular/core';
 import { DictionaryData } from '../../../core/models';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { map, tap, takeUntil } from 'rxjs/operators';
 import { META } from '../../../../config/config';
 import {
   BookmarksService,
@@ -18,7 +23,7 @@ import {
   ],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class BrowseComponent implements OnInit {
+export class BrowseComponent implements OnDestroy, OnInit {
   currentEntries$: BehaviorSubject<DictionaryData[]>;
   currentX: DictionaryData[];
   displayCategories$: Observable<any>;
@@ -33,6 +38,7 @@ export class BrowseComponent implements OnInit {
   letterSelectOptions: Object = { header: 'Select a Letter' };
   categorySelectOptions: Object = { header: 'Select a Category' };
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
+  unsubscribe$ = new Subject<void>();
   constructor(
     public bookmarkService: BookmarksService,
     private mtdService: MtdService
@@ -42,20 +48,32 @@ export class BrowseComponent implements OnInit {
       this.mtdService.dataDict_value
     );
     // this.letters = this.mtdService.config_value.L1.lettersInLanguage;
-    this.mtdService.dataDict$.subscribe(x => {
-      this.currentEntries$.next(x);
-      this.initializeEntries();
-    });
+    this.mtdService.dataDict$
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(x => {
+        this.currentEntries$.next(x);
+        this.initializeEntries();
+      });
     this.currentEntries$
-      .pipe(map(entries => this.getXFrom(this.startIndex$.value, entries)))
+      .pipe(
+        map(entries => this.getXFrom(this.startIndex$.value, entries)),
+        takeUntil(this.unsubscribe$)
+      )
       .subscribe(entries => (this.currentX = entries));
     this.startIndex$
-      .pipe(map(i => this.getXFrom(i, this.currentEntries$.getValue())))
+      .pipe(
+        map(i => this.getXFrom(i, this.currentEntries$.getValue())),
+        takeUntil(this.unsubscribe$)
+      )
       .subscribe(entries => (this.currentX = entries));
     this.initializeEntries();
   }
 
   ngOnInit(): void {}
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
+  }
 
   getXFrom(
     i: number,

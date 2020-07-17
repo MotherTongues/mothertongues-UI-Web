@@ -16,7 +16,7 @@ import {
 })
 export class HomeComponent implements OnInit {
   routeAnimationsElements = ROUTE_ANIMATIONS_ELEMENTS;
-  constructor(private mtdService: MtdService) {}
+  constructor(public mtdService: MtdService) {}
 
   ngOnInit(): void {}
 }

@@ -1,7 +1,8 @@
 import browser from 'browser-detect';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { environment as env } from '../../environments/environment';
@@ -28,7 +29,7 @@ import {
   styleUrls: ['./app.component.scss'],
   animations: [routeAnimations]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
   isProd = env.production;
   envName = env.envName;
   version = env.versions.app;
@@ -52,7 +53,7 @@ export class AppComponent implements OnInit {
   stickyHeader$: Observable<boolean>;
   language$: Observable<string>;
   theme$: Observable<string>;
-
+  unsubscribe$ = new Subject<void>();
   constructor(
     private store: Store,
     private storageService: LocalStorageService
@@ -60,6 +61,10 @@ export class AppComponent implements OnInit {
 
   private static isIEorEdgeOrSafari() {
     return ['ie', 'edge', 'safari'].includes(browser().name);
+  }
+
+  ngOnDestroy(): void {
+    this.unsubscribe$.next();
   }
 
   ngOnInit(): void {
@@ -71,13 +76,16 @@ export class AppComponent implements OnInit {
         })
       );
     }
-    this.store.select(selectEffectiveTheme).subscribe(theme => {
-      if (theme === 'light-theme') {
-        this.logo = 'assets/logo-dark.svg';
-      } else {
-        this.logo = 'assets/logo-light.svg';
-      }
-    });
+    this.store
+      .select(selectEffectiveTheme)
+      .pipe(takeUntil(this.unsubscribe$))
+      .subscribe(theme => {
+        if (theme === 'light-theme') {
+          this.logo = 'assets/logo-dark.svg';
+        } else {
+          this.logo = 'assets/logo-light.svg';
+        }
+      });
     this.isAuthenticated$ = this.store.pipe(select(selectIsAuthenticated));
     this.stickyHeader$ = this.store.pipe(select(selectSettingsStickyHeader));
     this.language$ = this.store.pipe(select(selectSettingsLanguage));
