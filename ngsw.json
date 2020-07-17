@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1594973451730,
+  "timestamp": 1595006422343,
   "index": "/mothertongues-UI-Web/index.html",
   "assetGroups": [
     {
@@ -28,8 +28,8 @@
         "/mothertongues-UI-Web/9-es5.bf81de84928a20605111.js",
         "/mothertongues-UI-Web/favicon.ico",
         "/mothertongues-UI-Web/index.html",
-        "/mothertongues-UI-Web/main-es2015.91a2accf2fe2287c8b43.js",
-        "/mothertongues-UI-Web/main-es5.91a2accf2fe2287c8b43.js",
+        "/mothertongues-UI-Web/main-es2015.ac53e7d2e70899f150fe.js",
+        "/mothertongues-UI-Web/main-es5.ac53e7d2e70899f150fe.js",
         "/mothertongues-UI-Web/manifest.webmanifest",
         "/mothertongues-UI-Web/polyfills-es2015.49bc2ead84c3e3eae683.js",
         "/mothertongues-UI-Web/polyfills-es5.7e953faa468a75fd9a14.js",
@@ -119,11 +119,11 @@
     "/mothertongues-UI-Web/assets/logo.png": "001d39204c6e793b13aa37e94396c9c9fee0523d",
     "/mothertongues-UI-Web/assets/release-butler.png": "2c4ee96a2f2da9164722fe60b3f1f05ee087397e",
     "/mothertongues-UI-Web/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/mothertongues-UI-Web/index.html": "20f45e19a1632ed7d3973c2e26f7dca6ae2ff60e",
+    "/mothertongues-UI-Web/index.html": "085053a791f2b89cbd2a367b5d63713a1c9c9f10",
     "/mothertongues-UI-Web/intro.e80aa3482ddc7cead285.jpg": "8da2b3fd31b80efafa111e99b9c8b76854fff50b",
     "/mothertongues-UI-Web/logo.f8129dc0be398797db8a.png": "001d39204c6e793b13aa37e94396c9c9fee0523d",
-    "/mothertongues-UI-Web/main-es2015.91a2accf2fe2287c8b43.js": "277d64e7f624b61d900c3f885ef2e73137ed8e0e",
-    "/mothertongues-UI-Web/main-es5.91a2accf2fe2287c8b43.js": "b5672cf5ba8af6873901986b18273256e28502f4",
+    "/mothertongues-UI-Web/main-es2015.ac53e7d2e70899f150fe.js": "02190046c86069274f55d968814578f418cc3a9c",
+    "/mothertongues-UI-Web/main-es5.ac53e7d2e70899f150fe.js": "ff32d9064c01c69ae9d71c229403bcd6ccdc8e8a",
     "/mothertongues-UI-Web/manifest.webmanifest": "44dc603a13ec919d209ec201ab5c4caa95c5497e",
     "/mothertongues-UI-Web/polyfills-es2015.49bc2ead84c3e3eae683.js": "7a58105eeed99be445cd92318509687787250218",
     "/mothertongues-UI-Web/polyfills-es5.7e953faa468a75fd9a14.js": "688355ff497c81ac93c0f32d6100f7161370c7a1",
