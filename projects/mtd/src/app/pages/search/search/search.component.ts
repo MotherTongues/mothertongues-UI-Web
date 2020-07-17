@@ -113,7 +113,10 @@ export class SearchComponent implements OnDestroy, OnInit {
 
   getL2(searchQuery, entries): DictionaryData[] {
     const results = [];
-    const re = new RegExp(searchQuery, 'i');
+    const re = new RegExp(
+      searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+      'i'
+    );
     for (const entry of entries) {
       if (re.test(entry.definition)) {
         results.push(entry);
@@ -128,19 +131,20 @@ export class SearchComponent implements OnDestroy, OnInit {
   // Get l2_results (eng) and target (l1) results
   getResults(searchQuery) {
     if (searchQuery.length > 1) {
+      const searchQueryRe = searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       // Normalize
       const mtd = window['mtd'];
       const originalSearchTerm = mtd.convertQuery(searchQuery);
       // 1. Exact match
       const searchQueryRegex = new RegExp(
-        `(\\s|^){1}${searchQuery}(?=([;.?!\\s]|$))`,
+        `(\\s|^){1}${searchQueryRe}(?=([;.?!\\s]|$))`,
         'i'
       );
       const l1Exact = this.getRegex(searchQueryRegex, 'word');
       const l2Exact = this.getRegex(searchQueryRegex);
       // 2. Partial match
       const searchQueryPartialRegex = new RegExp(
-        `(\\s|^){1}(${searchQuery})\\S|\\S(${searchQuery})(\\s|^){1}|\\S(${searchQuery})\\S`,
+        `(\\s|^){1}(${searchQueryRe})\\S|\\S(${searchQueryRe})(\\s|^){1}|\\S(${searchQueryRe})\\S`,
         'i'
       );
       const l1Partial = this.getRegex(searchQueryPartialRegex, 'word');

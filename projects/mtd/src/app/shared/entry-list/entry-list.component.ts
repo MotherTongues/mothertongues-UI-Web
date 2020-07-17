@@ -136,7 +136,10 @@ export class EntryListComponent implements OnChanges {
         .transduce(this.searchTerm, normTransducerName)
         .toLowerCase();
       const normText = mtd.transduce(text, normTransducerName).toLowerCase();
-      const normSearchTermPattern = new RegExp(searchTerm, 'gi');
+      const normSearchTermPattern = new RegExp(
+        searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+        'gi'
+      );
 
       // Match norm against text
       let firstMatch;
@@ -275,7 +278,10 @@ export class EntryListComponent implements OnChanges {
         }
       }
       // Last resort, just highlight the whole thing if it doesn't already match L2
-      const l2Pattern = new RegExp(this.searchTerm, 'gi');
+      const l2Pattern = new RegExp(
+        this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+        'gi'
+      );
       if (!l2Pattern.test(entry.definition)) {
         return `<span class="langMatched">${text}</span>`;
       } else {
@@ -283,7 +289,10 @@ export class EntryListComponent implements OnChanges {
       }
     } else if (langType === 'L2') {
       return text.replace(
-        new RegExp(this.searchTerm, 'gi'),
+        new RegExp(
+          this.searchTerm.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
+          'gi'
+        ),
         '<span class="langMatched">$&</span>'
       );
     } else {
