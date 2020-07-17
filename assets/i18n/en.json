@@ -60,7 +60,7 @@
       "search": {
         "matches": "Matches",
         "maybe-matches": "Maybe you meant this?",
-        "no-results": "Sorry, we couldn't find any words that match 's'. Please try something else.",
+        "no-results": "Sorry, we couldn't find any words that match '{{ value }}'. Please try something else.",
         "partial-matches": "Partial Matches"
       }
     },
