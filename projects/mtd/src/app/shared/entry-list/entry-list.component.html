@@ -1,7 +1,7 @@
 <div class='entry-list-container'>
   <div class="container" *ngFor="let entry of entries; last as isLast" text-wrap>
     <div class='row'>
-      <div class='col-sm-3'>
+      <div class='col-sm-4'>
         <button mat-icon-button aria-label="Bookmark entry"
           (click)="entry.favourited = !entry.favourited; toggleBookmark(entry)">
           <mat-icon *ngIf="!entry.favourited">bookmark_border</mat-icon>
@@ -23,13 +23,11 @@
 
       </div>
 
-      <div class="offset-sm-1 col-sm-3 match__term__container" (click)="showModal(entry)">
+      <div class="col-sm-4 match__term__container" (click)="showModal(entry)">
         <span class='match__term match__term--translation' [innerHTML]="highlight(entry, 'L2')"></span>
         <!-- <span *ngIf='shouldHighlight' class="match__term match__term--translation"
             [innerHTML]="highlight(entry.definition)"></span>
           <span *ngIf='!shouldHighlight' class="match__term match__term--translation">{{entry.definition}}</span> -->
-      </div>
-      <div class="col-sm-1">
       </div>
     </div>
     <hr *ngIf="!isLast">
