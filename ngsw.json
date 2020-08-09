@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1596932636782,
+  "timestamp": 1596932670949,
   "index": "/mothertongues-UI-Web/index.html",
   "assetGroups": [
     {
@@ -16,8 +16,8 @@
         "/mothertongues-UI-Web/11-es5.53c2917890142244172d.js",
         "/mothertongues-UI-Web/12-es2015.dcb881a2a8ac3052f0d1.js",
         "/mothertongues-UI-Web/12-es5.dcb881a2a8ac3052f0d1.js",
-        "/mothertongues-UI-Web/13-es2015.0c098601ed85f49b987e.js",
-        "/mothertongues-UI-Web/13-es5.0c098601ed85f49b987e.js",
+        "/mothertongues-UI-Web/13-es2015.730ed7358e3c00b25dd5.js",
+        "/mothertongues-UI-Web/13-es5.730ed7358e3c00b25dd5.js",
         "/mothertongues-UI-Web/2-es2015.c84fb3a6d0490b88ddee.js",
         "/mothertongues-UI-Web/2-es5.c84fb3a6d0490b88ddee.js",
         "/mothertongues-UI-Web/7-es2015.57b11920a5adad88d652.js",
@@ -33,8 +33,8 @@
         "/mothertongues-UI-Web/manifest.webmanifest",
         "/mothertongues-UI-Web/polyfills-es2015.49bc2ead84c3e3eae683.js",
         "/mothertongues-UI-Web/polyfills-es5.7e953faa468a75fd9a14.js",
-        "/mothertongues-UI-Web/runtime-es2015.da50551ac4c07eac3757.js",
-        "/mothertongues-UI-Web/runtime-es5.da50551ac4c07eac3757.js",
+        "/mothertongues-UI-Web/runtime-es2015.0fa65f7d4cb44be916f9.js",
+        "/mothertongues-UI-Web/runtime-es5.0fa65f7d4cb44be916f9.js",
         "/mothertongues-UI-Web/styles.dabe2009056dedec19b3.css"
       ],
       "patterns": []
@@ -84,8 +84,8 @@
     "/mothertongues-UI-Web/11-es5.53c2917890142244172d.js": "b6de685dd6cdb2289d7b8045ec336133e1af27ba",
     "/mothertongues-UI-Web/12-es2015.dcb881a2a8ac3052f0d1.js": "690f2ea3411d046389e6adbc9f756f4c3bd7449b",
     "/mothertongues-UI-Web/12-es5.dcb881a2a8ac3052f0d1.js": "585e97384ef0118eebb692254efd8fa1ce67fefd",
-    "/mothertongues-UI-Web/13-es2015.0c098601ed85f49b987e.js": "40daf4272a974f71d46ceeb5f0ca5aa2ef25f0f9",
-    "/mothertongues-UI-Web/13-es5.0c098601ed85f49b987e.js": "c41d9822bb47cb53cda9b66644e50087033cbf48",
+    "/mothertongues-UI-Web/13-es2015.730ed7358e3c00b25dd5.js": "2c0a8dc7d239b0fe2affd9b2058afffae861bd4d",
+    "/mothertongues-UI-Web/13-es5.730ed7358e3c00b25dd5.js": "5bd5b6fa2b9e30abb22439214ff45d50212db848",
     "/mothertongues-UI-Web/2-es2015.c84fb3a6d0490b88ddee.js": "71b33700321fc0245851d57af0ae938c4814b37e",
     "/mothertongues-UI-Web/2-es5.c84fb3a6d0490b88ddee.js": "2039fa6885901f5fd5baaf314e37e3418792c3c2",
     "/mothertongues-UI-Web/7-es2015.57b11920a5adad88d652.js": "45fa5881f00c2e20afaed02c52a01f6d5c8a9cb4",
@@ -119,7 +119,7 @@
     "/mothertongues-UI-Web/assets/logo.png": "001d39204c6e793b13aa37e94396c9c9fee0523d",
     "/mothertongues-UI-Web/assets/release-butler.png": "2c4ee96a2f2da9164722fe60b3f1f05ee087397e",
     "/mothertongues-UI-Web/favicon.ico": "84161b857f5c547e3699ddfbffc6d8d737542e01",
-    "/mothertongues-UI-Web/index.html": "1d807704a72427365fdd6a01ffbb33b87b6cd82d",
+    "/mothertongues-UI-Web/index.html": "9759b54b9b56c89c7771d0a42a12f82c2b1acfbe",
     "/mothertongues-UI-Web/intro.e80aa3482ddc7cead285.jpg": "8da2b3fd31b80efafa111e99b9c8b76854fff50b",
     "/mothertongues-UI-Web/logo.f8129dc0be398797db8a.png": "001d39204c6e793b13aa37e94396c9c9fee0523d",
     "/mothertongues-UI-Web/main-es2015.2552a1d7a8d85b902fb6.js": "71fd136e7b511b59ae1fa542bd6fca3a7fcf93e7",
@@ -127,8 +127,8 @@
     "/mothertongues-UI-Web/manifest.webmanifest": "44dc603a13ec919d209ec201ab5c4caa95c5497e",
     "/mothertongues-UI-Web/polyfills-es2015.49bc2ead84c3e3eae683.js": "7a58105eeed99be445cd92318509687787250218",
     "/mothertongues-UI-Web/polyfills-es5.7e953faa468a75fd9a14.js": "688355ff497c81ac93c0f32d6100f7161370c7a1",
-    "/mothertongues-UI-Web/runtime-es2015.da50551ac4c07eac3757.js": "aedd0a65f01f693765a96a8649c9482d4d104f04",
-    "/mothertongues-UI-Web/runtime-es5.da50551ac4c07eac3757.js": "c0b574a0eb915b6874a30039a42ec1d0b38f03bd",
+    "/mothertongues-UI-Web/runtime-es2015.0fa65f7d4cb44be916f9.js": "a97b1bd7f64624cac744bc07a916c81fa7f4b479",
+    "/mothertongues-UI-Web/runtime-es5.0fa65f7d4cb44be916f9.js": "6bfe5f771fbf35a5f6382d46e8d8ce35884afb8d",
     "/mothertongues-UI-Web/styles.dabe2009056dedec19b3.css": "da9e0bb6f41c28a1a33ac4f5328cd5dc4542f6af"
   },
   "navigationUrls": [
