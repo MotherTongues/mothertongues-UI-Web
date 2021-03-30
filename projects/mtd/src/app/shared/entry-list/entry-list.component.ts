@@ -95,7 +95,21 @@ export class EntryListComponent implements OnChanges {
   }
 
   hasAudio(entry) {
-    return 'audio' in entry && entry.audio.length > 0;
+    if ('audio' in entry) {
+      const audio = entry.audio.filter(x => {
+        let notEmpty = true;
+        Object.keys(x).forEach(k => {
+          if (!x[k]) {
+            notEmpty = false;
+            return notEmpty;
+          }
+        });
+        return notEmpty;
+      });
+      return audio.length > 0;
+    } else {
+      return false;
+    }
   }
 
   // highlight(text) {
