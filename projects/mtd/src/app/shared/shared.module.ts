@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { ScrollingModule } from '@angular/cdk/scrolling';
+
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
@@ -81,6 +83,7 @@ import { EntryListComponent } from './entry-list/entry-list.component';
     MatSlideToggleModule,
     MatToolbarModule,
     MatDividerModule,
+    ScrollingModule,
 
     FontAwesomeModule
   ],
@@ -123,6 +126,7 @@ import { EntryListComponent } from './entry-list/entry-list.component';
     NoNullObjectValuesPipe,
     NoNullValuesPipe,
     FontAwesomeModule,
+    ScrollingModule,
 
     BigInputComponent,
     BigInputActionComponent,

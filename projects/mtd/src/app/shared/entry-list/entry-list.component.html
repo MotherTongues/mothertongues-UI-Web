@@ -1,35 +1,38 @@
 <div class='entry-list-container'>
-  <div class="container" *ngFor="let entry of entries; last as isLast" text-wrap>
-    <div class='row'>
-      <div class='col-sm-4'>
-        <button mat-icon-button aria-label="Bookmark entry"
-          (click)="entry.favourited = !entry.favourited; toggleBookmark(entry)">
-          <mat-icon *ngIf="!entry.favourited">bookmark_border</mat-icon>
-          <mat-icon *ngIf="entry.favourited" color='accent' class='color-accent'>bookmark</mat-icon>
-        </button>
-        <button mat-icon-button aria-label="Show More information" (click)="showModal(entry)">
-          <mat-icon>list</mat-icon>
-        </button>
-        <button [disabled]='!hasAudio(entry)' mat-icon-button aria-label="Play Audio" (click)='playDefaultAudio(entry)'>
-          <mat-icon>audiotrack</mat-icon>
-        </button>
+  <cdk-virtual-scroll-viewport itemSize="30" class="example-viewport">
+    <div class="container" *cdkVirtualFor="let entry of entries; last as isLast" text-wrap>
+      <div class='row'>
+        <div class='col-sm-4'>
+          <button mat-icon-button aria-label="Bookmark entry"
+            (click)="entry.favourited = !entry.favourited; toggleBookmark(entry)">
+            <mat-icon *ngIf="!entry.favourited">bookmark_border</mat-icon>
+            <mat-icon *ngIf="entry.favourited" color='accent' class='color-accent'>bookmark</mat-icon>
+          </button>
+          <button mat-icon-button aria-label="Show More information" (click)="showModal(entry)">
+            <mat-icon>list</mat-icon>
+          </button>
+          <button [disabled]='!hasAudio(entry)' mat-icon-button aria-label="Play Audio"
+            (click)='playDefaultAudio(entry)'>
+            <mat-icon>audiotrack</mat-icon>
+          </button>
 
-      </div>
+        </div>
 
-      <div class="col-sm-4 match__term__container">
-        <span class='match__term match__term--target' [innerHTML]="highlight(entry, 'L1')"></span>
-        <!-- <span class='match__term match__term--target'
+        <div class="col-sm-4 match__term__container">
+          <span class='match__term match__term--target' [innerHTML]="highlight(entry, 'L1')"></span>
+          <!-- <span class='match__term match__term--target'
             [ngClass]="{'langMatched': entry.type === 'L1' && shouldHighlight}">{{entry.word}}</span> -->
 
-      </div>
+        </div>
 
-      <div class="col-sm-4 match__term__container" (click)="showModal(entry)">
-        <span class='match__term match__term--translation' [innerHTML]="highlight(entry, 'L2')"></span>
-        <!-- <span *ngIf='shouldHighlight' class="match__term match__term--translation"
+        <div class="col-sm-4 match__term__container" (click)="showModal(entry)">
+          <span class='match__term match__term--translation' [innerHTML]="highlight(entry, 'L2')"></span>
+          <!-- <span *ngIf='shouldHighlight' class="match__term match__term--translation"
             [innerHTML]="highlight(entry.definition)"></span>
           <span *ngIf='!shouldHighlight' class="match__term match__term--translation">{{entry.definition}}</span> -->
+        </div>
       </div>
+      <hr *ngIf="!isLast">
     </div>
-    <hr *ngIf="!isLast">
-  </div>
+  </cdk-virtual-scroll-viewport>
 </div>
