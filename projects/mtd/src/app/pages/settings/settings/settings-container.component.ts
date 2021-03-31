@@ -1,6 +1,8 @@
 import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { META } from '../../../../config/config';
+import { marker } from '@biesbjerg/ngx-translate-extract-marker';
 
 import { ROUTE_ANIMATIONS_ELEMENTS } from '../../../core/core.module';
 
@@ -32,7 +34,12 @@ export class SettingsContainerComponent implements OnInit {
     { value: 'BLACK-THEME', label: 'dark' }
   ];
 
-  languages = [{ value: 'en', label: 'English' }];
+  languages = META.languages.map(x => {
+    return {
+      value: x.value,
+      label: marker(`mtd.settings.general.language.${x.value}`)
+    };
+  });
 
   constructor(private store: Store<State>) {}
 
