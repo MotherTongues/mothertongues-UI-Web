@@ -24,5 +24,13 @@
         color: mat-color($foreground-palette, foreground);
       }
     }
+    &__entry {
+      &__list {
+        &__container {
+          min-height: 60vh;
+          max-height: 400px;
+        }
+      }
+    }
   }
 }

@@ -1,7 +1,10 @@
-<div class='entry-list-container'>
-  <cdk-virtual-scroll-viewport itemSize="30" class="example-viewport">
+<div class='entry-list__container'>
+  <cdk-virtual-scroll-viewport itemSize="30" class="entry-list__viewport">
     <div class="container" *cdkVirtualFor="let entry of entries; last as isLast" text-wrap>
-      <div class='row'>
+      <div class='row' *ngIf="entry.title">
+        <h4 class='col-sm-12 entry-list__title'>{{ entry.title | translate }}</h4>
+      </div>
+      <div class='row' *ngIf="!entry.title">
         <div class='col-sm-4'>
           <button mat-icon-button aria-label="Bookmark entry"
             (click)="entry.favourited = !entry.favourited; toggleBookmark(entry)">

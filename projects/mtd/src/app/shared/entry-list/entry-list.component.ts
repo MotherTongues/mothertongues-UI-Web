@@ -59,6 +59,7 @@ export class EntryListComponent implements OnChanges {
   @Input() searchTerm: string;
   @Input() threshold: number;
   @Input() shouldHighlight = false;
+  @Input() searchResults: boolean = false;
   constructor(
     private bookmarkService: BookmarksService,
     public dialog: MatDialog,

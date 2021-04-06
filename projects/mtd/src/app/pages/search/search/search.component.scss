@@ -29,5 +29,9 @@
       text-align: center;
       padding: 10px;
     }
+    &__container {
+      min-height: 60vh;
+      max-height: 400px;
+    }
   }
 }

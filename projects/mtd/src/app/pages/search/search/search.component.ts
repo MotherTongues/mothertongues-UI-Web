@@ -21,12 +21,6 @@ import {
 
 import { slugify } from 'transliteration';
 
-export interface Matches {
-  matches: DictionaryData[];
-  partMatches: DictionaryData[];
-  maybeMatches: DictionaryData[];
-}
-
 @Component({
   selector: 'mtd-search',
   templateUrl: './search.component.html',
@@ -40,11 +34,7 @@ export interface Matches {
 export class SearchComponent implements OnDestroy, OnInit {
   entries: DictionaryData[];
   entries$: Observable<DictionaryData[]>;
-  matches$: BehaviorSubject<Matches> = new BehaviorSubject({
-    matches: [],
-    partMatches: [],
-    maybeMatches: []
-  });
+  matches$: BehaviorSubject<DictionaryData[]> = new BehaviorSubject([]);
   matchThreshold = 0;
   partialThreshold = 1;
   maybeThreshold = 2;
@@ -286,7 +276,17 @@ export class SearchComponent implements OnDestroy, OnInit {
       );
       mergeMatches();
       this.loading$.next(false);
-      this.matches$.next({ matches, partMatches, maybeMatches });
+      // Add headers
+      if (matches.length) {
+        matches.unshift({ title: 'mtd.pages.search.matches' });
+      }
+      if (partMatches.length) {
+        partMatches.unshift({ title: 'mtd.pages.search.partial-matches' });
+      }
+      if (maybeMatches.length) {
+        maybeMatches.unshift({ title: 'mtd.pages.search.maybe-matches' });
+      }
+      this.matches$.next(matches.concat(partMatches).concat(maybeMatches));
     }
     // console.log('get results');
     // if (searchQuery && searchQuery.length > 1) {
