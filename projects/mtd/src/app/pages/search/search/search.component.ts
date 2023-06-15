@@ -167,7 +167,7 @@ export class SearchComponent implements OnDestroy, OnInit {
       // Collect l1Exact matches and add to allMatches
       const populateL1Exact = () => {
         for (const result of l1Exact) {
-          const entry = result;
+          const entry = Object.assign({}, result);
           entry.type = 'L1';
           entry.distance = this.matchThreshold;
           allMatches.push(entry);
@@ -177,7 +177,7 @@ export class SearchComponent implements OnDestroy, OnInit {
       // Collect l2Exact matches and add to allMatches
       const populateL2Exact = () => {
         for (const result of l2Exact) {
-          const entry = result;
+          const entry = Object.assign({}, result);
           entry.type = 'L2';
           entry.distance = this.matchThreshold;
           allMatches.push(entry);
@@ -187,7 +187,7 @@ export class SearchComponent implements OnDestroy, OnInit {
       // Collect l1Partial matches and add to allMatches
       const populateL1Partial = () => {
         for (const result of l1Partial.concat(l1PartialSlug)) {
-          const entry = result;
+          const entry = Object.assign({}, result);
           entry.type = 'L1';
           entry.distance = this.partialThreshold;
           allMatches.push(entry);
@@ -197,7 +197,7 @@ export class SearchComponent implements OnDestroy, OnInit {
       // Collect l2Partial matches and add to allMatches
       const populateL2Partial = () => {
         for (const result of l2Partial) {
-          const entry = result;
+          const entry = Object.assign({}, result);
           entry.type = 'L2';
           entry.distance = this.partialThreshold;
           allMatches.push(entry);
@@ -206,8 +206,9 @@ export class SearchComponent implements OnDestroy, OnInit {
 
       const populateTarget = () => {
         for (const result of target) {
-          const entry = result[1];
+          const entry = Object.assign({}, result[1]);
           entry.type = 'L1';
+          entry.distance += this.approxWeight;
           const resultIndex = allMatches.findIndex(
             match =>
               match.word === entry.word && match.definition === match.definition
@@ -217,9 +218,9 @@ export class SearchComponent implements OnDestroy, OnInit {
           } else {
             if (
               'distance' in allMatches[resultIndex] &&
-              allMatches[resultIndex].distance > result[0]
+              allMatches[resultIndex].distance > entry.distance
             ) {
-              allMatches[resultIndex].distance = result[0] + this.approxWeight;
+              allMatches[resultIndex].distance = entry.distance;
             }
           }
         }
