@@ -21,9 +21,9 @@ var l1SearchAlg = null;
 var l1SearchAlgWord = null;
 
 function searchL1(query_value) {
-  if (l1SearchAlg === null || l1SearchAlgWord) {
-    l1SearchAlg = distanceCalculator(getAllEntries());
-    l1SearchAlgWord = distanceCalculatorWord(getAllEntries());
+  if (l1SearchAlg === null || l1SearchAlgWord === null) {
+    l1SearchAlg = distanceCalculator(getAllEntries(), 'compare_form');
+    l1SearchAlgWord = distanceCalculator(getAllEntries(), 'word');
   }
   query_value = query_value.toLowerCase();
   // Case for multi-word query
